@@ -10,6 +10,8 @@ At its core, vhybZ is a mobile app that, at first glance, resembles a chatbot in
 
 We're not talking AI slop or soulless automation, nor is it just another **"Vibe Coding"** tool. vhybZ is where human creativity and agentic intelligence merge, a true "humagentic" society, where the best of both worlds combine to shape, remix, and own living digital realities. We’re building the operating system for purposeful interaction, where anyone can become an architect of dynamic, evolving Experiences. This is the end of the text wall era. vhybZ Experiences are dynamic, time-based, and multimodal, crafted and evolved through a novel layer of memory and agency.
 
+<img src="./assets/architect.jpg" width="300">
+
 > vhybZ is where anyone, with AI, can co-create living digital realities.
 
 ---
