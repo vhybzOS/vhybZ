@@ -87,7 +87,9 @@ The future isn’t static pages or endless chatbot prompts, it’s dynamic, agen
 Are you ready to build, not just browse?
 
 > Slide [deck](https://docs.google.com/presentation/d/1p1c9kmE_RnRwzP9QSpuyXlgHcrVJuRWm2eA_dYIztqU/edit?usp=sharing)
+>
 > Explore the future at [vhybz.com](https://vhybz.com) | Contact: info@vhybz.com
+>
 > SOUL Framework: [GitHub link](https://github.com/vhybZApp/SOUL)
 
 *Team: Built by AGI pioneers, practical engineers, and creators who believe the web should serve your purpose, not the other way around.*
