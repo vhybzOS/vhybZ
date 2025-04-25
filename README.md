@@ -51,7 +51,7 @@ Think of Confidant as the practical enabler of intentions. It operates as a high
 
 Confidant allows soulmades, guided by SOUL's logic, to not only *reason* but also *do*: automating workflows, controlling devices, and interacting with legacy systems, truly injecting autonomy into existing apps without requiring deep integration.
 
-*Confidant demo video:*
+### Confidant demo video:
 
 [![Confidant Demo](https://img.youtube.com/vi/L9KwGNzy2PQ/0.jpg)](https://www.youtube.com/watch?v=L9KwGNzy2PQ)
 
