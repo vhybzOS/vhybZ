@@ -41,6 +41,8 @@ Soulmades maintain and upgrade your Experiences on autopilot, learning from ever
 
 While soulmades excel at reasoning, co-creation, and managing experiences within the vhybZ canvas, their agency needs to extend beyond it. **Confidant** is the SOUL-compatible component designed to bridge this gap, equipping soulmades with the "hands and eyes" necessary to perceive and act upon the broader digital and physical world.
 
+> Explore the Confidant implementation: [GitHub Link](https://github.com/vhybZApp/confidant)
+
 Think of Confidant as the practical enabler of intentions. It operates as a highly performant, cross-platform service (built in Go) that translates a soulmade's agenda into concrete actions outside the vhybZ app:
 
 *   **Digital Dexterity:** Interacting with existing desktop applications, web interfaces, or operating system elements via programmatic control of mouse, keyboard, and screen analysis.
@@ -49,11 +51,9 @@ Think of Confidant as the practical enabler of intentions. It operates as a high
 
 Confidant allows soulmades, guided by SOUL's logic, to not only *reason* but also *do*: automating workflows, controlling devices, and interacting with legacy systems, truly injecting autonomy into existing apps without requiring deep integration.
 
-> Explore the Confidant implementation: [GitHub Link](https://github.com/vhybZApp/confidant)
+*Confidant demo video:*
 
-[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/L9KwGNzy2PQ/0.jpg)](https://www.youtube.com/watch?v=L9KwGNzy2PQ)
-
-*Confidant demo video*
+[![Confidant Demo](https://img.youtube.com/vi/L9KwGNzy2PQ/0.jpg)](https://www.youtube.com/watch?v=L9KwGNzy2PQ)
 
 ---
 
