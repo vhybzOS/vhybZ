@@ -53,7 +53,9 @@ Confidant allows soulmades, guided by SOUL's logic, to not only *reason* but als
 
 ### Confidant demo video:
 
-[![Confidant Demo](https://img.youtube.com/vi/L9KwGNzy2PQ/0.jpg)](https://www.youtube.com/watch?v=L9KwGNzy2PQ)
+<a href="https://www.youtube.com/watch?v=L9KwGNzy2PQ" rel="nofollow">
+  <img src="./assets/cover.png" alt="Confidant Demo" style="max-width: 40%;">
+</a>
 
 ---
 
