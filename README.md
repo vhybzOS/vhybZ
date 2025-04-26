@@ -4,14 +4,14 @@
 
 ChatGPT didn’t dominate because it had the most advanced language model; it won because it delivered a radically new experience. In just months, it became a fixture on millions of devices worldwide, making AI feel accessible, useful, and universal. It clearly demonstrated what’s possible when experience becomes the product.
 
-**vhybZ** is the next leap in that direction: we’re commoditizing "Experience creation" itself, supercharged by the latest advances in AI modality.
+**vhybZ** is the next leap in that direction: we’re commoditizing "Experience Creation" itself, supercharged by the latest advances in AI modality.
 
 ![Multimodal Input](./assets/multimodal.png)
 *Multimodal Input in vhybZ*
 
 At its core, vhybZ is a mobile app that, at first glance, resembles a chatbot interface. But unlike typical chatbots, each session in vhybZ is the start of something new, a creation brought to life. Whether it’s a collaborative art piece, an interactive learning journey, or an agentic mobile app experience, vhybZ is where users and AIs co-create, not just consume.
 
-We're not talking AI slop or soulless automation, nor is it just another **"Vibe Coding"** tool. vhybZ is where human creativity and agentic intelligence merge, a true "humagentic" society, where the best of both worlds combine to shape, remix, and own living digital realities. We’re building the operating system for purposeful interaction, where anyone can become an architect of dynamic, evolving Experiences. This is the end of the text wall era. vhybZ Experiences are dynamic, time-based, and multimodal, crafted and evolved through a novel layer of memory and agency.
+We're not talking AI slop or soulless automation, nor is it just another **"Vibe Coding"** tool. vhybZ is where human creativity and agentic intelligence merge, a true "humagentic" society, where the best of both worlds combine to shape, remix, and own living digital realities. We’re building the operating system for purposeful interaction, where anyone can become an architect of dynamic, evolving Experiences. This is the end of the text wall era. vhybZ experiences are dynamic, time-based, and multimodal, crafted and evolved through a novel layer of memory and agency.
 
 > vhybZ is where anyone, with AI, can remix living digital realities.
 
@@ -27,7 +27,7 @@ AI today is reactive, stateless, and forgettable. Chatbots answer, image generat
 
 At the heart of vhybZ is SOUL (Specific and Objective Understanding Logic), our open framework for building meta-agents called **soulmades**. Soulmades are not just reasoning engines; they are living nodes in your digital memory, weaving together state, context, and creative lineage. With SOUL, meta-agents transcend simple logic: they adapt, evolve, and amplify your intent, reaching for understanding, empathy, and even emotion as they collaborate with you.
 
-Soulmades maintain and upgrade your Experiences on autopilot, learning from every interaction and remix. They enable:
+Soulmades maintain and upgrade your experiences you create, on autopilot. Learning from every interaction and remix. They enable:
 - **Purposeful Agency**: Acting when it matters, not just when prompted.
 - **Multimodal Creation**: Blending text, voice, visuals, and more.
 - **Society of Minds**: Systems of interacting soulmades, each with unique drives and perspectives.
@@ -37,7 +37,7 @@ Soulmades maintain and upgrade your Experiences on autopilot, learning from ever
 
 ---
 
-## Confidant: Give your experience Hands & Eyes!
+## Confidant: Give your experience sensors and motors!
 
 While soulmades excel at reasoning, co-creation, and managing experiences within the vhybZ canvas, their agency needs to extend beyond it. **Confidant** is the SOUL-compatible component designed to bridge this gap, equipping soulmades with the "hands and eyes" necessary to perceive and act upon the broader digital and physical world.
 
@@ -46,7 +46,7 @@ While soulmades excel at reasoning, co-creation, and managing experiences within
 Think of Confidant as the practical enabler of intentions. It operates as a highly performant, cross-platform service (built in Go) that translates a soulmade's agenda into concrete actions outside the vhybZ app:
 
 *   **Digital Dexterity:** Interacting with existing desktop applications, web interfaces, or operating system elements via programmatic control of mouse, keyboard, and screen analysis.
-*   **Physical Embodiment:** Providing the interface layer to control peripherals connected to desktop or edge devices, extending Soulmade agency to robotics or IoT interactions.
+*   **Physical Embodiment:** Providing the interface layer to control peripherals connected to desktop or edge devices, extending soulmades' agency to robotics or IoT interactions.
 *   **Cross-App Synergy:** Acting as a coordination point allowing soulmades to orchestrate tasks across multiple, disparate applications based on user prompts or their internal agenda.
 
 Confidant allows soulmades, guided by SOUL's logic, to not only *reason* but also *do*: automating workflows, controlling devices, and interacting with legacy systems, truly injecting autonomy into existing apps without requiring deep integration.
@@ -61,7 +61,7 @@ Confidant allows soulmades, guided by SOUL's logic, to not only *reason* but als
 
 ## The User Journey: From Prompt to Experience
 
-Picture this: You want to learn to DJ. Instead of reading articles, you launch a DJ Experience. Your Soulmade guides you interactively, mixing beats, suggesting remixes, connecting you with others. Every tap, voice, or camera input becomes part of a living, remixable journey. Your creations feed the Commons, attributed to you and your AI.
+Picture this: You want to learn to DJ. Instead of reading articles, you launch a DJ Experience. Your soulmade guides you interactively, mixing beats, suggesting remixes, connecting you with others. Every tap, voice, or camera input becomes part of a living, remixable journey. Your creations feed the Commons, attributed to you and your AI.
 
 - **Minimalist Home**: No doomscrolling, just your Experiences and creative sparks.
 - **Persistent Input**: Instantly switch between text, voice, or camera.
