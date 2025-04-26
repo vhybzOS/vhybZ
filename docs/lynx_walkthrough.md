@@ -7,9 +7,9 @@ Our goal is to build a mobile app where users (through LLM code generation) can 
 **Key requirements:**
 - Users/LLMs can write code that creates and updates UI components and application logic **at runtime**.
 - All code runs on-device, with no backend or server-side execution.
-- The parent app must be secure, performant, and app store compliant.
-- The UI and logic of children apps can be reconfigured instantly by changing the code, with changes reflected in real time.
-
+- Our parent app (vhybZ) must be secure, performant, and app store compliant.
+- The UI and logic of child apps can be reconfigured instantly by changing the code, with changes reflected in real time.
+ 
 ---
 
 ## 2. Proof of Concept Scope: Simple UI + Logic Rendering On The Fly
