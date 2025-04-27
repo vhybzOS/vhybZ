@@ -13,7 +13,7 @@ At its core, vhybZ is a mobile app that, at first glance, may resemble a chatbot
 
 We're not talking AI slop or soulless automation, nor is it just another **"Vibe Coding"** tool. vhybZ is where human creativity and agentic intelligence merge, a true "humagentic" society, where the best of both worlds combine to shape, remix, and direct living digital realities. We’re building the operating system for purposeful interaction, where anyone can become an architect of dynamic, evolving experiences. This is the end of the text wall era. vhybZ experiences are dynamic, time-based, and multimodal, crafted and evolved through a novel layer of memory and agency.
 
-> vhybZ is where anyone, with AI, can remix living digital realities.
+> vhybZ is where anyone, in colab with human and AI friends, can remix living digital realities.
 
 ---
 
@@ -121,7 +121,7 @@ Confidant allows soulmades, guided by SOUL's logic, to not only *reason* but als
 - **Experiences, not responses**: Time-based, interactive, and co-created.
 - **Commons & Remixability**: Every creation is a node in the Morphic Consensus Graph, attributed, remixable, and evolving.
 - **Plug-and-play extensibility**: From LLMs to custom skills, vhybZ is modular by design.
-- **Intuitive, not intimidating**: Craft, remix, and collaborate, no prompt engineering degree required.
+- **Intuitive, not intimidating**: Search, remix, and collaborate, no prompt engineering degree required.
 
 ---
 
