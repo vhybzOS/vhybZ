@@ -9,7 +9,7 @@ ChatGPT didn’t dominate because it had the most advanced language model; it wo
 ![Multimodal Input](./assets/multimodal.png)
 *Multimodal Input in vhybZ*
 
-At its core, vhybZ is a mobile app that, at first glance, resembles a chatbot interface. But unlike typical chatbots, each session in vhybZ is the start of something new, a creation brought to life. Whether it’s a collaborative art piece, a learning session, or an agentic mobile app experience, vhybZ is where users and AIs co-create, not just consume.
+At its core, vhybZ is a mobile app that, at first glance, may resemble a chatbot interface. But unlike chatbots, each session in vhybZ is a canvas for something new, where creations are either discovered or crafted. Whether it’s a collaborative art piece, a learning session, or an agentic mobile app experience, vhybZ is where users and AIs co-create, not just consume.
 
 We're not talking AI slop or soulless automation, nor is it just another **"Vibe Coding"** tool. vhybZ is where human creativity and agentic intelligence merge, a true "humagentic" society, where the best of both worlds combine to shape, remix, and direct living digital realities. We’re building the operating system for purposeful interaction, where anyone can become an architect of dynamic, evolving experiences. This is the end of the text wall era. vhybZ experiences are dynamic, time-based, and multimodal, crafted and evolved through a novel layer of memory and agency.
 
@@ -19,7 +19,7 @@ We're not talking AI slop or soulless automation, nor is it just another **"Vibe
 
 ## The User Journey: From Prompt to Experience
 
-Picture this: You want to make egg fried rice. Instead of reading a recipe, you launch an Egg Fried Rice Experience. Agents tune the experience specifically for your setting, and guide you interactively, showing techniques, suggesting timings, and helping you troubleshoot. Every tap, voice, or camera input becomes part of a live journey.
+Picture this: You want to make egg fried rice. Instead of reading a recipe, you launch an "Egg Fried Rice Experience". Agents tune the experience specifically for your setting, and guide you interactively, showing techniques, suggesting timings, and helping you troubleshoot. Every tap, voice, or camera input becomes part of a live journey.
 
 - **Minimalist Home**: No doomscrolling, just your Experiences and creative sparks.
 - **Persistent Input**: Instantly switch between text, voice, or camera.
