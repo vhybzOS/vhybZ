@@ -11,7 +11,7 @@ ChatGPT didn’t dominate because it had the most advanced language model; it wo
 
 At its core, vhybZ is a mobile app that, at first glance, resembles a chatbot interface. But unlike typical chatbots, each session in vhybZ is the start of something new, a creation brought to life. Whether it’s a collaborative art piece, an interactive learning journey, or an agentic mobile app experience, vhybZ is where users and AIs co-create, not just consume.
 
-We're not talking AI slop or soulless automation, nor is it just another **"Vibe Coding"** tool. vhybZ is where human creativity and agentic intelligence merge, a true "humagentic" society, where the best of both worlds combine to shape, remix, and own living digital realities. We’re building the operating system for purposeful interaction, where anyone can become an architect of dynamic, evolving Experiences. This is the end of the text wall era. vhybZ experiences are dynamic, time-based, and multimodal, crafted and evolved through a novel layer of memory and agency.
+We're not talking AI slop or soulless automation, nor is it just another **"Vibe Coding"** tool. vhybZ is where human creativity and agentic intelligence merge, a true "humagentic" society, where the best of both worlds combine to shape, remix, and own living digital realities. We’re building the operating system for purposeful interaction, where anyone can become an architect of dynamic, evolving experiences. This is the end of the text wall era. vhybZ experiences are dynamic, time-based, and multimodal, crafted and evolved through a novel layer of memory and agency.
 
 > vhybZ is where anyone, with AI, can remix living digital realities.
 
@@ -19,7 +19,7 @@ We're not talking AI slop or soulless automation, nor is it just another **"Vibe
 
 ## Why Experiences, Not Just Responses?
 
-AI today is reactive, stateless, and forgettable. Chatbots answer, image generators spit out assets, but there’s no sense of continuity, memory, or true agency. vhybZ breaks the cycle. Here, Experiences are alive, unfolding over time, blending text, voice, visuals, and more, all backed by **soulmades**: not agents, but the living/evolving memory layer that gives meaning and persistence to everything you do.
+AI today is reactive, stateless, and forgettable. Chatbots answer, image generators spit out assets, but there’s no sense of continuity, memory, or true agency. vhybZ breaks the cycle. Here, experiences are alive, unfolding over time, blending text, voice, visuals, and more, all backed by **soulmades**: not agents, but the living/evolving memory layer that gives meaning and persistence to everything you do.
 
 ---
 
@@ -61,7 +61,7 @@ Confidant allows soulmades, guided by SOUL's logic, to not only *reason* but als
 
 ## The User Journey: From Prompt to Experience
 
-Picture this: You want to learn to DJ. Instead of reading articles, you launch a DJ Experience. Your soulmade guides you interactively, mixing beats, suggesting remixes, connecting you with others. Every tap, voice, or camera input becomes part of a living, remixable journey. Your creations feed the Commons, attributed to you and your AI.
+Picture this: You want to make egg fried rice. Instead of reading a recipe, you launch an Egg Fried Rice Experience. Your soulmades tune the experience specifically for your setting, and guide you interactively, showing techniques, suggesting timings, and helping you troubleshoot. Every tap, voice, or camera input becomes part of a living, remixable journey.
 
 - **Minimalist Home**: No doomscrolling, just your Experiences and creative sparks.
 - **Persistent Input**: Instantly switch between text, voice, or camera.
