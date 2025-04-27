@@ -19,7 +19,7 @@ We're not talking AI slop or soulless automation, nor is it just another **"Vibe
 
 ## The User Journey: From Prompt to Experience
 
-Picture this: You want to make egg fried rice. Instead of reading a recipe, you launch an Egg Fried Rice Experience. Your soulmades tune the experience specifically for your setting, and guide you interactively, showing techniques, suggesting timings, and helping you troubleshoot. Every tap, voice, or camera input becomes part of a living, remixable journey.
+Picture this: You want to make egg fried rice. Instead of reading a recipe, you launch an Egg Fried Rice Experience. Agents tune the experience specifically for your setting, and guide you interactively, showing techniques, suggesting timings, and helping you troubleshoot. Every tap, voice, or camera input becomes part of a living, remixable journey.
 
 - **Minimalist Home**: No doomscrolling, just your Experiences and creative sparks.
 - **Persistent Input**: Instantly switch between text, voice, or camera.
