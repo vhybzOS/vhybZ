@@ -30,11 +30,11 @@ Picture this: You want to make egg fried rice. Instead of reading a recipe, you 
 
 ## Why Experiences, Not Just Responses?
 
-AI today is largely reactive, stateless, and forgettable. You type a prompt, get a response, and the interaction often ends there. Chatbots answer questions, image generators spit out assets, but there’s little sense of continuity, memory, or true agency tied to a persistent goal. This is the "text wall era" of AI interaction.
+AI today is largely reactive, stateless, and forgettable. You type a prompt, get a response, and the interaction often ends there. Chatbots answer questions, image generators spit out assets, but LLMs are people pleasers, won't stick to a persistent goal. We're at the "text wall era" of AI interaction.
 
 vhybZ breaks this cycle by introducing **experiences**; dynamic, time-based, multimodal realities, crafted and evolved through a novel layer of memory and agency. Unlike prompting and losing the relevant solution in a flood of text, vhybZ experiences are designed for purpose and permanence.
 
-Think about the evolution of web search. Early search was basic keyword matching; Google dominated by moving to *semantic search*, understanding intent and providing interactive widgets in response to queries. With generic LLM chatbots, we've sometimes regressed, relying on complex *prompt engineering* and hoping prompts magically generate the desired, often ephemeral, result within a conversational flow.
+Think about the evolution of web search. Early search was basic keyword matching; Google eloled it by moving to *semantic search*, understanding intent and providing interactive widgets in response to queries. With generic LLM chatbots, we've sometimes regressed, relying on complex *prompt engineering* and hoping prompts magically generate the desired, often ephemeral, result within a conversational flow.
 
 vhybZ brings back the power of targeted utility. Instead of wrestling with chatbots to *simulate* a task or extract information from endless text, you can **search with keywords and instantly launch a specific experience** designed precisely for what you need. Want to master a complex software feature? Need a dynamic plan for a challenging project? Looking for step-by-step help troubleshooting a device? Speed and convenience of intentional search is revived in vhybZ, with a generative twist...
 
