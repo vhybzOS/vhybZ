@@ -60,11 +60,11 @@ This seamless, optimized access to powerful, diverse AI models is the core utili
 
 At the heart of vhybZ is SOUL (Specific and Objective Understanding Logic), our open framework for building meta-agents called **soulmades**. They're more than mere reasoning engines; they are living nodes in your digital memory, weaving together state, context, and creative lineage. With SOUL, these *meta-agents* transcend simple logic: they adapt, evolve, and amplify your intent, reaching for understanding, empathy, and even emotion as they collaborate with you.
 
-Soulmades maintain and upgrade your experiences you create, on autopilot. Learning from every interaction and remix. They enable:
+Soulmades maintain and upgrade the experiences you create, on autopilot. Learning from every interaction and remix. They enable:
 - **Purposeful Agency**: Acting when it matters, not just when prompted.
-- **Multimodal Creation**: Blending text, voice, visuals, and more.
+- **Multimodal Creation**: Storing metadata about perceived interactions.
 - **Society of Minds**: Systems of interacting soulmades, each with unique drives and perspectives.
-- **Extensible Intelligence**: Plug in your own LLMs, knowledge, and skills.
+- **Extensible Intelligence**: Bring your own models, knowledge, and history.
 
 > SOUL Framework: [GitHub link](https://github.com/vhybZApp/SOUL)
 
