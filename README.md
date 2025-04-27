@@ -11,7 +11,7 @@ ChatGPT didn’t dominate because it had the most advanced language model; it wo
 
 At its core, vhybZ is a mobile app that, at first glance, resembles a chatbot interface. But unlike typical chatbots, each session in vhybZ is the start of something new, a creation brought to life. Whether it’s a collaborative art piece, an interactive learning journey, or an agentic mobile app experience, vhybZ is where users and AIs co-create, not just consume.
 
-We're not talking AI slop or soulless automation, nor is it just another **"Vibe Coding"** tool. vhybZ is where human creativity and agentic intelligence merge, a true "humagentic" society, where the best of both worlds combine to shape, remix, and own living digital realities. We’re building the operating system for purposeful interaction, where anyone can become an architect of dynamic, evolving experiences. This is the end of the text wall era. vhybZ experiences are dynamic, time-based, and multimodal, crafted and evolved through a novel layer of memory and agency.
+We're not talking AI slop or soulless automation, nor is it just another **"Vibe Coding"** tool. vhybZ is where human creativity and agentic intelligence merge, a true "humagentic" society, where the best of both worlds combine to shape, remix, and direct living digital realities. We’re building the operating system for purposeful interaction, where anyone can become an architect of dynamic, evolving experiences. This is the end of the text wall era. vhybZ experiences are dynamic, time-based, and multimodal, crafted and evolved through a novel layer of memory and agency.
 
 > vhybZ is where anyone, with AI, can remix living digital realities.
 
