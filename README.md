@@ -28,7 +28,7 @@ Picture this: You want to make egg fried rice. Instead of reading a recipe, you 
 
 ---
 
-## Why experiences, Not Just Responses?
+## Why Experiences, Not Just Responses?
 
 AI today is largely reactive, stateless, and forgettable. You type a prompt, get a response, and the interaction often ends there. Chatbots answer questions, image generators spit out assets, but there’s little sense of continuity, memory, or true agency tied to a persistent goal. This is the "text wall era" of AI interaction.
 
