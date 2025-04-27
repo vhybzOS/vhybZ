@@ -44,6 +44,21 @@ Here the fundamental shift lies: moving from trying to *prompt* a general model 
 
 ---
 
+## The vhybZ Vision: From Passive to Purposeful
+
+vhybZ is the **Experience Platform** for the next era of co-creation. Our mission is to make purposeful agency and living digital memory accessible, composable, and a joy to use.
+
+A core pillar of realizing this is for vhybZ to become a true **"extension of our minds"**, a set of the most capable tools in our pockets that feel like a **"citizenship right"** in the digital world, rather than merely chasing hockey-stick *Daily Active User* growth. To achieve this deep integration and symbiosis, users must retain total control over the narration and output of their digital reality.
+
+This requires a fundamental shift in the traditional platform-creator-user relationship. We cannot assume that creators *work for* the platform; it must be the other way around. Further, that **digital creations belong to the author** should be a first principle, not an afterthought or charity.
+
+To embody this vision and these principles, we implement two fundamental improvements compared to how traditional platforms are done:
+
+1.  **User-Sovereign Assets:** We move all digital assets to user space. Everything is treated as portable files, easily moved from and to other destinations; ensuring vhybZ can't become a walled garden, by design.
+2.  **Open, Participatory Infrastructure:** Everything, importantly the backend, is MIT open source with a straightforward package for deployment. Don't like our subscription tiers? Join the collective backend infrastructure; not only do you avoid subscription costs, but you join forces with the mesh AI network and share in the revenue from usage across the collective.
+
+---
+
 ## The Engine: Curated AI Power at Your Fingertips
 
 Today's AI landscape is vast and rapidly changing. The best models for creative writing might differ from those for complex reasoning or multimodal interpretation. Accessing, managing, and optimizing across this diverse range of powerful AI can be costly, complex, and inefficient, often requiring multiple subscriptions or technical know-how to get the "best bang for your buck" for specific tasks.
@@ -89,21 +104,6 @@ Confidant allows soulmades, guided by SOUL's logic, to not only *reason* but als
 <a href="https://www.youtube.com/watch?v=L9KwGNzy2PQ" rel="nofollow">
   <img src="./assets/cover.png" alt="Confidant Demo" style="max-width: 40%;">
 </a>
-
----
-
-## The vhybZ Vision: From Passive to Purposeful
-
-vhybZ is the **Experience Platform** for the next era of co-creation. Our mission is to make purposeful agency and living digital memory accessible, composable, and a joy to use.
-
-A core pillar of realizing this is for vhybZ to become a true **"extension of our minds"**, a set of the most capable tools in our pockets that feel like a **"citizenship right"** in the digital world, rather than merely chasing hockey-stick *Daily Active User* growth. To achieve this deep integration and symbiosis, users must retain total control over the narration and output of their digital reality.
-
-This requires a fundamental shift in the traditional platform-creator-user relationship. We cannot assume that creators *work for* the platform; it must be the other way around. Further, that **digital creations belong to the author** should be a first principle, not an afterthought or charity.
-
-To embody this vision and these principles, we implement two fundamental improvements compared to how traditional platforms are done:
-
-1.  **User-Sovereign Assets:** We move all digital assets to user space. Everything is treated as portable files, easily moved from and to other destinations; ensuring vhybZ can't become a walled garden, by design.
-2.  **Open, Participatory Infrastructure:** Everything, importantly the backend, is MIT open source with a straightforward package for deployment. Don't like our subscription tiers? Join the collective backend infrastructure; not only do you avoid subscription costs, but you join forces with the mesh AI network and share in the revenue from usage across the collective.
 
 ---
 
