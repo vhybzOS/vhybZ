@@ -23,6 +23,17 @@ AI today is reactive, stateless, and forgettable. Chatbots answer, image generat
 
 ---
 
+## The User Journey: From Prompt to Experience
+
+Picture this: You want to make egg fried rice. Instead of reading a recipe, you launch an Egg Fried Rice Experience. Your soulmades tune the experience specifically for your setting, and guide you interactively, showing techniques, suggesting timings, and helping you troubleshoot. Every tap, voice, or camera input becomes part of a living, remixable journey.
+
+- **Minimalist Home**: No doomscrolling, just your Experiences and creative sparks.
+- **Persistent Input**: Instantly switch between text, voice, or camera.
+- **Multimodal Responses**: Rich, interactive feedback, never just a wall of text.
+- **Remix & Attribution**: Everything you create is yours, remixable and credited.
+
+---
+
 ## Soulmades & SOUL: Living Memory, Creative Lineage
 
 At the heart of vhybZ is SOUL (Specific and Objective Understanding Logic), our open framework for building meta-agents called **soulmades**. Soulmades are not just reasoning engines; they are living nodes in your digital memory, weaving together state, context, and creative lineage. With SOUL, meta-agents transcend simple logic: they adapt, evolve, and amplify your intent, reaching for understanding, empathy, and even emotion as they collaborate with you.
@@ -56,17 +67,6 @@ Confidant allows soulmades, guided by SOUL's logic, to not only *reason* but als
 <a href="https://www.youtube.com/watch?v=L9KwGNzy2PQ" rel="nofollow">
   <img src="./assets/cover.png" alt="Confidant Demo" style="max-width: 40%;">
 </a>
-
----
-
-## The User Journey: From Prompt to Experience
-
-Picture this: You want to make egg fried rice. Instead of reading a recipe, you launch an Egg Fried Rice Experience. Your soulmades tune the experience specifically for your setting, and guide you interactively, showing techniques, suggesting timings, and helping you troubleshoot. Every tap, voice, or camera input becomes part of a living, remixable journey.
-
-- **Minimalist Home**: No doomscrolling, just your Experiences and creative sparks.
-- **Persistent Input**: Instantly switch between text, voice, or camera.
-- **Multimodal Responses**: Rich, interactive feedback, never just a wall of text.
-- **Remix & Attribution**: Everything you create is yours, remixable and credited.
 
 ---
 
