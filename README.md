@@ -65,7 +65,7 @@ Today's AI landscape is vast and rapidly changing. The best models for creative 
 
 vhybZ cuts through this complexity. Our platform acts as an intelligent model aggregator and optimizer. **Even on our Free tier, we aggregate and provide access to the best capabilities offered by leading free models, ensuring you always have powerful AI assistance.** For our subscribers, this means you're not just getting access to *one* AI model; you're gaining access to a curated, evolving selection of the best underlying AI capabilities for any given need within your subscription tier.
 
-Think of it as a smart gateway: vhybZ dynamically routes your requests and co-creation efforts to the most suitable and cost-effective models available, ensuring you consistently receive high-quality, performant AI assistance without managing multiple endpoints or worrying about which model is "best" right now.
+**This optimized access provides an enhanced foundation for all vhybZ interactions, starting with the core AI capabilities familiar to chatbot users, and extending to fuel the dynamic, multimodal experiences you co-create on vhybZ.** Think of it as a smart gateway: vhybZ dynamically routes your requests and co-creation efforts to the most suitable and cost-effective models available, ensuring you consistently receive high-quality, performant AI assistance without managing multiple endpoints or worrying about which model is "best" right now.
 
 This seamless, optimized access to powerful, diverse AI models is the core utility that fuels the dynamic, multimodal experiences you co-create on vhybZ and is the primary value unlocked by our subscription tiers. It's the engine that makes purposeful interaction and remixing digital realities truly possible.
 
