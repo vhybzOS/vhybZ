@@ -94,10 +94,16 @@ Confidant allows soulmades, guided by SOUL's logic, to not only *reason* but als
 
 ## The vhybZ Vision: From Passive to Purposeful
 
-vhybZ is the Experience Canvas for the next era of digital creation. Our mission: to make purposeful AI agency and living memory accessible, composable, and a joy to use. We empower:
-- **Creators & Power Users**: Build rich, stateful Experiences and memory flows without wrestling with code or clunky frameworks.
-- **Developers**: Drop in agentic intelligence, multimodal Experiences, and persistent memory, no need to reinvent the wheel.
-- **Everyone**: Personalize your digital world, remix Experiences just as you would stories, and own your creative and cognitive lineage.
+vhybZ is the **Experience Platform** for the next era of co-creation. Our mission is to make purposeful agency and living digital memory accessible, composable, and a joy to use.
+
+A core pillar of realizing this is for vhybZ to become a true **"extension of our minds"**, a set of the most capable tools in our pockets that feel like a **"citizenship right"** in the digital world, rather than merely chasing hockey-stick *Daily Active User* growth. To achieve this deep integration and symbiosis, users must retain total control over the narration and output of their digital reality.
+
+This requires a fundamental shift in the traditional platform-creator-user relationship. We cannot assume that creators *work for* the platform; it must be the other way around. Further, that **digital creations belong to the user** should be a first principle, not an afterthought or charity.
+
+To embody this vision and these principles, we implement two fundamental improvements compared to how traditional platforms are done:
+
+1.  **User-Sovereign Assets:** We move all digital assets to user space. Everything is treated as portable files, easily moved from and to other destinations; ensuring vhybZ can't become a walled garden, by design.
+2.  **Open, Participatory Infrastructure:** Everything, importantly the backend, is MIT open source with a straightforward package for deployment. Don't like our subscription tiers? Join the collective backend infrastructure; not only do you avoid subscription costs, but you join forces with the mesh AI network and share in the revenue from usage across the collective.
 
 ---
 
