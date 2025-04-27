@@ -42,7 +42,7 @@ vhybZ cuts through this complexity. Our platform acts as an intelligent model ag
 
 Think of it as a smart gateway: vhybZ dynamically routes your requests and co-creation efforts to the most suitable and cost-effective models available, ensuring you consistently receive high-quality, performant AI assistance without managing multiple endpoints or worrying about which model is "best" right now.
 
-This seamless, optimized access to powerful, diverse AI models is the core utility that fuels the dynamic, multimodal Experiences you co-create on vhybZ and is the primary value unlocked by our subscription tiers. It's the engine that makes purposeful interaction and remixing digital realities truly possible.
+This seamless, optimized access to powerful, diverse AI models is the core utility that fuels the dynamic, multimodal experiences you co-create on vhybZ and is the primary value unlocked by our subscription tiers. It's the engine that makes purposeful interaction and remixing digital realities truly possible.
 
 ---
 
@@ -121,7 +121,7 @@ vhybZ is the Experience Canvas for the next era of digital creation. Our mission
 
 ## Ready to Experience Web∞?
 
-The future isn’t static pages or endless chatbot prompts, it’s dynamic, agentic Experiences you shape with AI partners. vhybZ is your invitation to co-create, remix, and set your creativity on autopilot.
+The future isn’t static pages or endless chatbot prompts, it’s dynamic, agentic experiences you shape with AI partners. vhybZ is your invitation to co-create, remix, and set your creativity on autopilot.
 
 Are you ready to build, not just browse?
 
