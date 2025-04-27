@@ -98,7 +98,7 @@ vhybZ is the **Experience Platform** for the next era of co-creation. Our missio
 
 A core pillar of realizing this is for vhybZ to become a true **"extension of our minds"**, a set of the most capable tools in our pockets that feel like a **"citizenship right"** in the digital world, rather than merely chasing hockey-stick *Daily Active User* growth. To achieve this deep integration and symbiosis, users must retain total control over the narration and output of their digital reality.
 
-This requires a fundamental shift in the traditional platform-creator-user relationship. We cannot assume that creators *work for* the platform; it must be the other way around. Further, that **digital creations belong to the user** should be a first principle, not an afterthought or charity.
+This requires a fundamental shift in the traditional platform-creator-user relationship. We cannot assume that creators *work for* the platform; it must be the other way around. Further, that **digital creations belong to the author** should be a first principle, not an afterthought or charity.
 
 To embody this vision and these principles, we implement two fundamental improvements compared to how traditional platforms are done:
 
