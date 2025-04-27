@@ -24,7 +24,7 @@ Picture this: You want to make egg fried rice. Instead of reading a recipe, you 
 - **Minimalist Home**: No doomscrolling, just your Experiences and creative sparks.
 - **Persistent Input**: Instantly switch between text, voice, or camera.
 - **Multimodal Responses**: Rich, interactive feedback, never just a wall of text.
-- **Remix & Attribution**: Everything you create is yours, remixable and credited, rewarded when used by others.
+- **Remix & Attribution**: Everything you create is yours, remixable and credited, shares in revenue from usage by others.
 
 ---
 
@@ -62,7 +62,7 @@ At the heart of vhybZ is SOUL (Specific and Objective Understanding Logic), our 
 
 Soulmades maintain and upgrade the experiences you create, on autopilot. Learning from every interaction and remix. They enable:
 - **Purposeful Agency**: Acting when it matters, not just when prompted.
-- **Multimodal Creation**: Storing metadata about perceived interactions.
+- **Multimodal Tracking**: Storing metadata about perceived interactions.
 - **Society of Minds**: Systems of interacting soulmades, each with unique drives and perspectives.
 - **Extensible Intelligence**: Bring your own models, knowledge, and history.
 
