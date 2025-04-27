@@ -9,7 +9,7 @@ ChatGPT didn’t dominate because it had the most advanced language model; it wo
 ![Multimodal Input](./assets/multimodal.png)
 *Multimodal Input in vhybZ*
 
-At its core, vhybZ is a mobile app that, at first glance, resembles a chatbot interface. But unlike typical chatbots, each session in vhybZ is the start of something new, a creation brought to life. Whether it’s a collaborative art piece, an interactive learning journey, or an agentic mobile app experience, vhybZ is where users and AIs co-create, not just consume.
+At its core, vhybZ is a mobile app that, at first glance, resembles a chatbot interface. But unlike typical chatbots, each session in vhybZ is the start of something new, a creation brought to life. Whether it’s a collaborative art piece, a learning session, or an agentic mobile app experience, vhybZ is where users and AIs co-create, not just consume.
 
 We're not talking AI slop or soulless automation, nor is it just another **"Vibe Coding"** tool. vhybZ is where human creativity and agentic intelligence merge, a true "humagentic" society, where the best of both worlds combine to shape, remix, and direct living digital realities. We’re building the operating system for purposeful interaction, where anyone can become an architect of dynamic, evolving experiences. This is the end of the text wall era. vhybZ experiences are dynamic, time-based, and multimodal, crafted and evolved through a novel layer of memory and agency.
 
@@ -19,7 +19,7 @@ We're not talking AI slop or soulless automation, nor is it just another **"Vibe
 
 ## The User Journey: From Prompt to Experience
 
-Picture this: You want to make egg fried rice. Instead of reading a recipe, you launch an Egg Fried Rice Experience. Agents tune the experience specifically for your setting, and guide you interactively, showing techniques, suggesting timings, and helping you troubleshoot. Every tap, voice, or camera input becomes part of a living, remixable journey.
+Picture this: You want to make egg fried rice. Instead of reading a recipe, you launch an Egg Fried Rice Experience. Agents tune the experience specifically for your setting, and guide you interactively, showing techniques, suggesting timings, and helping you troubleshoot. Every tap, voice, or camera input becomes part of a live journey.
 
 - **Minimalist Home**: No doomscrolling, just your Experiences and creative sparks.
 - **Persistent Input**: Instantly switch between text, voice, or camera.
@@ -34,7 +34,7 @@ AI today is largely reactive, stateless, and forgettable. You type a prompt, get
 
 vhybZ breaks this cycle by introducing **experiences**. Unlike prompting and losing the relevant solution in a flood of text, vhybZ experiences are designed for purpose and permanence.
 
-Think about the evolution of web search. Early search was basic keyword matching; Google evolved it by moving to *semantic search*, understanding intent and providing interactive widgets in response to queries. With generic LLM chatbots, we've sometimes regressed. Relying on complex *prompt engineering* and hoping to magically generate the desired, often ephemeral, result within a conversational flow.
+Think about the evolution of web search. Early search was basic keyword matching; Google evolved it by moving to *semantic search*, understanding intent and providing interactive widgets in response to queries. With generic LLM chatbots, we've sometimes regressed. Relying on complex *prompt engineering* and hoping to magically generate the desired result within a conversational flow.
 
 vhybZ brings back the power of targeted utility. Instead of wrestling with chatbots to *simulate* a task or extract information from endless text, you can **search with keywords and instantly launch a specific experience** designed precisely for what you need. Want to master a complex software feature? Need a dynamic plan for a challenging project? Looking for step-by-step help troubleshooting a device? Speed and convenience of intentional search is revived in vhybZ, with a generative twist...
 
