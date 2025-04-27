@@ -24,7 +24,7 @@ Picture this: You want to make egg fried rice. Instead of reading a recipe, you 
 - **Minimalist Home**: No doomscrolling, just your Experiences and creative sparks.
 - **Persistent Input**: Instantly switch between text, voice, or camera.
 - **Multimodal Responses**: Rich, interactive feedback, never just a wall of text.
-- **Remix & Attribution**: Everything you create is yours, remixable and credited.
+- **Remix & Attribution**: Everything you create is yours, remixable and credited, rewarded when used by others.
 
 ---
 
