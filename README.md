@@ -36,7 +36,7 @@ Here's where vhybZ experiences are different: you *do* things *while* the AI col
 
 ## Why Experiences, Not Just Responses?
 
-AI today is largely reactive, stateless, and forgettable. You type a prompt, get a response, and the interaction often ends there. Chatbots answer questions, image generators spit out assets, but LLMs are people pleasers, won't stick to a persistent goal. We're at *the text wall era* of AI interaction.
+AI today is largely reactive, stateless, and forgettable. You type a prompt, get a response, and the interaction often ends there. Chatbots answer questions, image generators spit out assets, but LLMs are people pleasers, won't stick to a persistent goal.
 
 vhybZ breaks this cycle by introducing **experiences**. Unlike prompting and losing the relevant solution in a flood of text, vhybZ experiences are designed for purpose and permanence.
 
