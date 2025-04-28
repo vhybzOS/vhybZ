@@ -21,7 +21,7 @@ You open the vhybZ app on your phone, it looks like typical AI chat: there's a t
 
 Now, you see an animated UI: images of a bowl of rice and a pan, showing the rice being added to the pan, and a "Next Step" button. As you follow along, each time you tap "Next Step", the images, animations, and instructions update to guide you through the process.
 
-Here's where vhybZ experiences are different: you *do* things *while* the AI collaborates with you. At one step, the experience nudges you to take a picture of your pan to check your progress. You tap the camera button, snap a photo, and send it. The screen flashes yellow: "You're overdoing it! Turn off the stove!", giving you real-time, personalized feedback.
+Here's where vhybZ experiences are different: you *do* things *while* the AI collaborates with you, it's not Wikipedia! At one step, the experience nudges you to take a picture of your pan to check your progress. You tap the camera button, snap a photo, and send it. The screen flashes yellow: "You're overdoing it! Turn off the stove!", giving you real-time, personalized feedback.
 
 > In a normal chatbot, you’d just get a recipe in text. In vhybZ, you get a living, interactive guide. 
 >
