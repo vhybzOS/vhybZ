@@ -17,7 +17,7 @@ We're not talking AI slop or soulless automation, we're taking **vibe coding** t
 
 ## The User Journey: From Prompt to Experience
 
-You open the vhybZ app on your phone, it looks like typical AI chat: there's a text box and a send button. You type, "Give me an egg fried rice recipe". Instead of replying with a wall of text, vhybZ instantly renders a full-fledged mobile app, right in the space where the chat appears in other apps.
+You open the vhybZ app on your phone, it looks like typical AI chat: there's a text box and a send button. You type, "Give me an egg fried rice recipe". Instead of replying with text, vhybZ instantly renders a full-fledged mobile app, right in the space where the chat appears in other apps.
 
 Now, you see an animated UI: images of a bowl of rice and a pan, showing the rice being added to the pan, and a "Next Step" button. As you follow along, each time you tap "Next Step", the images, animations, and instructions update to guide you through the process.
 
