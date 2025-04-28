@@ -11,7 +11,7 @@ ChatGPT didn’t dominate because it had the most advanced language model; it wo
 
 At its core, vhybZ is a mobile app that, at first glance, may resemble a chatbot interface. But unlike chatbots, each session in vhybZ is a canvas, where creations are either discovered or crafted. Whether it’s a collaborative art piece, a learning lesson, or an agentic mobile app experience, vhybZ is where users and AIs co-create, not just consume.
 
-We're not talking AI slop or soulless automation, nor is it just another **"Vibe Coding"** tool. vhybZ is where human creativity and agentic intelligence merge, a true "humagentic" society, where the best of both worlds combine to shape, remix, and direct living digital realities. We’re building the operating system for purposeful interaction, where anyone can become an architect of dynamic, evolving experiences. This is the end of the text wall era. vhybZ experiences are dynamic, time-based, and multimodal, crafted and evolved through a novel layer of memory and agency.
+We're not talking AI slop or soulless automation, we're taking **"Vibe Coding"** to the next level. vhybZ is where human creativity and silicon intelligence merge, a true "humagentic" society, where the best of both worlds combine to shape, remix, and direct living digital realities. We’re building the operating system for purposeful interaction, where anyone can become an architect of dynamic, evolving experiences. This is the end of the text wall era. vhybZ experiences are dynamic, time-based, and multimodal, crafted and evolved through a novel layer of memory and agency.
 
 > vhybZ is where anyone, in colab with human and AI friends, can remix living digital realities.
 
@@ -19,9 +19,17 @@ We're not talking AI slop or soulless automation, nor is it just another **"Vibe
 
 ## The User Journey: From Prompt to Experience
 
-Picture this: You want to make egg fried rice. Instead of reading a recipe, you launch an "Egg Fried Rice Experience". Agents tune the experience specifically for your setting, and guide you interactively, showing techniques, suggesting timings, and helping you troubleshoot. Every tap, voice, or camera input becomes part of a live journey.
+You open vhybZ app on your phone, it looks just like a typical AI chatbot: there's a text box and a send button. You type, "Give me an egg fried rice recipe". Instead of replying with a wall of text, vhybZ instantly renders a full-fledged mobile app, right in the space where the chat appears in other apps.
 
-- **Minimalist Home**: No doomscrolling, just your Experiences and creative sparks.
+Now, you see an animated UI: images of a bowl of rice and a pan, showing the rice being added to the pan, and a "Next Step" button. As you follow along, each time you tap "Next Step", the images, animations, and instructions update to guide you through the process.
+
+Here's where vhybZ experiences are different: you *do* things *while* the AI collaborates with you. At one step, the experience nudges you to take a picture of your pan to check your progress. You tap the camera button, snap a photo, and send it. The screen flashes yellow: "You're overdoing it! Turn off the stove!", giving you real-time, personalized feedback.
+
+> In a normal chatbot, you’d just get a recipe in text. In vhybZ, you get a living, interactive guide. 
+>
+> vhybZ experiences are active and collaborative, transcending passive text walls.
+
+- **Minimalist Home**: No doomscrolling, just your experiences and creative sparks.
 - **Persistent Input**: Instantly switch between text, voice, or camera.
 - **Multimodal Responses**: Rich, interactive feedback, never just a wall of text.
 - **Remix & Attribution**: Everything you create is yours, remixable and credited, shares in revenue from usage by others.
