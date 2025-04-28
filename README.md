@@ -9,7 +9,7 @@ ChatGPT didn’t dominate because it had the most advanced language model; it wo
 ![Multimodal Input](./assets/multimodal.png)
 *Multimodal Input in vhybZ*
 
-At its core, vhybZ is a mobile app that, at first glance, may resemble a chatbot interface. But unlike chatbots, each session in vhybZ is a canvas for something new, where creations are either discovered or crafted. Whether it’s a collaborative art piece, a learning session, or an agentic mobile app experience, vhybZ is where users and AIs co-create, not just consume.
+At its core, vhybZ is a mobile app that, at first glance, may resemble a chatbot interface. But unlike chatbots, each session in vhybZ is a canvas, where creations are either discovered or crafted. Whether it’s a collaborative art piece, a learning lesson, or an agentic mobile app experience, vhybZ is where users and AIs co-create, not just consume.
 
 We're not talking AI slop or soulless automation, nor is it just another **"Vibe Coding"** tool. vhybZ is where human creativity and agentic intelligence merge, a true "humagentic" society, where the best of both worlds combine to shape, remix, and direct living digital realities. We’re building the operating system for purposeful interaction, where anyone can become an architect of dynamic, evolving experiences. This is the end of the text wall era. vhybZ experiences are dynamic, time-based, and multimodal, crafted and evolved through a novel layer of memory and agency.
 
