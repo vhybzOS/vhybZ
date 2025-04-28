@@ -11,7 +11,7 @@ AI models have fundamentally changed how we interact with software. UX was total
 
 vhybZ is a mobile app that, at first glance, may resemble a chatbot interface. But unlike chatbots, each session in vhybZ is a canvas, where creations are either discovered or crafted. Whether it’s a collaborative art piece, a learning lesson, or an agentic mobile app experience, vhybZ is where users and AIs co-create, not just consume.
 
-We're not talking AI slop or soulless automation, we're taking **vibe coding** to the next level. vhybZ is where human creativity and silicon intelligence merge, a true humagentic society, where the best of both worlds combine to shape, remix, and direct living digital realities. We’re building the operating system for purposeful interaction, where anyone can become an architect of dynamic, evolving experiences. This is the end of the text wall era. vhybZ experiences are dynamic, time-based, and multimodal, crafted and evolved through a novel layer of memory and agency.
+We're not talking AI slop or soulless automation, we're taking **vibe coding** to the next level. vhybZ is where human creativity and silicon intelligence merge, a true humagentic society, where the best of both worlds combine. We’re building the operating system for purposeful interaction, where anyone can become an architect of dynamic, evolving experiences. This is the end of the text wall era. vhybZ experiences are dynamic, time-based, and multimodal, crafted and evolved through a novel layer of memory and agency.
 
 ---
 
@@ -36,11 +36,11 @@ Here's where vhybZ experiences are different: you *do* things *while* the AI col
 
 ## Why Experiences, Not Just Responses?
 
-AI today is largely reactive, stateless, and forgettable. You type a prompt, get a response, and the interaction often ends there. Chatbots answer questions, image generators spit out assets, but LLMs are people pleasers, won't stick to a persistent goal. We're at the "text wall era" of AI interaction.
+AI today is largely reactive, stateless, and forgettable. You type a prompt, get a response, and the interaction often ends there. Chatbots answer questions, image generators spit out assets, but LLMs are people pleasers, won't stick to a persistent goal. We're at *the text wall era* of AI interaction.
 
 vhybZ breaks this cycle by introducing **experiences**. Unlike prompting and losing the relevant solution in a flood of text, vhybZ experiences are designed for purpose and permanence.
 
-Think about the evolution of web search. Early search was basic keyword matching; Google evolved it by moving to *semantic search*, understanding intent and providing interactive widgets in response to queries. With generic LLM chatbots, we've sometimes regressed. Relying on complex *prompt engineering* and hoping to magically generate the desired result within a conversational flow.
+Think about the evolution of web search. Early search was basic keyword matching; Google evolved it by moving to *semantic search*, understanding intent and providing interactive widgets in response to queries. With generic LLM chatbots, we've regressed, lost that magic of quickly getting to a destination! Relying instead on complex *prompt engineering*, and hoping to magically generate the desired result within a conversational flow.
 
 vhybZ brings back the power of targeted utility. Instead of wrestling with chatbots to *simulate* a task or extract information from endless text, you can **search with keywords and instantly launch a specific experience** designed precisely for what you need. Want to master a complex software feature? Need a dynamic plan for a challenging project? Looking for step-by-step help troubleshooting a device? Speed and convenience of intentional search is revived in vhybZ, with a generative twist...
 
