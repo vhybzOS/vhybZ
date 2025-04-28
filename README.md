@@ -1,25 +1,23 @@
 # **vhybZ**: The Experience Platform for the Agentic Web
 
-> **TL;DR:** vhybZ is a new kind of platform where anyone can co-create dynamic, multimodal digital experiences alongside AI, going far beyond chatbot text walls or static apps.
+> **TL;DR:** vhybZ is a platform for building and using dynamic, interactive digital experiences with AI and other users. Unlike traditional chatbots, vhybZ sessions are not just text conversations; they are interactive canvases that support all kinds of media, as both input and output.
 
 ChatGPT didn’t dominate because it had the most advanced language model; it won because it delivered a radically new experience. In just months, it became a fixture on millions of devices worldwide, making AI feel accessible, useful, and universal. It clearly demonstrated what’s possible when experience becomes the product.
 
-**vhybZ** is the next leap in that direction: we’re commoditizing "Experience Creation" itself, supercharged by the latest advances in AI modality.
+**vhybZ** is the next leap in that direction: we’re commoditizing "Experience Creation" itself, utilizing the latest advances in AI modality.
 
 ![Multimodal Input](./assets/multimodal.png)
 *Multimodal Input in vhybZ*
 
-At its core, vhybZ is a mobile app that, at first glance, may resemble a chatbot interface. But unlike chatbots, each session in vhybZ is a canvas, where creations are either discovered or crafted. Whether it’s a collaborative art piece, a learning lesson, or an agentic mobile app experience, vhybZ is where users and AIs co-create, not just consume.
+vhybZ is a mobile app that, at first glance, may resemble a chatbot interface. But unlike chatbots, each session in vhybZ is a canvas, where creations are either discovered or crafted. Whether it’s a collaborative art piece, a learning lesson, or an agentic mobile app experience, vhybZ is where users and AIs co-create, not just consume.
 
 We're not talking AI slop or soulless automation, we're taking **"Vibe Coding"** to the next level. vhybZ is where human creativity and silicon intelligence merge, a true "humagentic" society, where the best of both worlds combine to shape, remix, and direct living digital realities. We’re building the operating system for purposeful interaction, where anyone can become an architect of dynamic, evolving experiences. This is the end of the text wall era. vhybZ experiences are dynamic, time-based, and multimodal, crafted and evolved through a novel layer of memory and agency.
-
-> vhybZ is where anyone, in colab with human and AI friends, can remix living digital realities.
 
 ---
 
 ## The User Journey: From Prompt to Experience
 
-You open vhybZ app on your phone, it looks just like a typical AI chatbot: there's a text box and a send button. You type, "Give me an egg fried rice recipe". Instead of replying with a wall of text, vhybZ instantly renders a full-fledged mobile app, right in the space where the chat appears in other apps.
+You open the vhybZ app on your phone, it looks like typical AI chat: there's a text box and a send button. You type, "Give me an egg fried rice recipe". Instead of replying with a wall of text, vhybZ instantly renders a full-fledged mobile app, right in the space where the chat appears in other apps.
 
 Now, you see an animated UI: images of a bowl of rice and a pan, showing the rice being added to the pan, and a "Next Step" button. As you follow along, each time you tap "Next Step", the images, animations, and instructions update to guide you through the process.
 
@@ -27,7 +25,7 @@ Here's where vhybZ experiences are different: you *do* things *while* the AI col
 
 > In a normal chatbot, you’d just get a recipe in text. In vhybZ, you get a living, interactive guide. 
 >
-> vhybZ experiences are active and collaborative, transcending passive text walls.
+> vhybZ experiences are active and collaborative, setting a new standard above the passive responses of current apps.
 
 - **Minimalist Home**: No doomscrolling, just your experiences and creative sparks.
 - **Persistent Input**: Instantly switch between text, voice, or camera.
