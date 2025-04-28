@@ -4,7 +4,7 @@
 
 AI models have fundamentally changed how we interact with software. UX was totally disrupted by the advent of LLMs. ChatGPT didn’t dominate by having the most advanced language model alone; it won because it delivered a radically new experience. In just months, it became a fixture on millions of devices worldwide, making AI feel useful and universal. It clearly demonstrated what’s possible when experience becomes the product.
 
-**vhybZ** is the next leap in that direction: we’re making experience creation accessible to everyone, utilizing the latest advances in AI modality.
+**vhybZ** is the next leap in that direction: we’re making *experience creation* accessible to everyone, utilizing the latest advances in AI modality.
 
 ![Multimodal Input](./assets/multimodal.png)
 *Multimodal Input in vhybZ*
