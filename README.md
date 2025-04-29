@@ -1,6 +1,6 @@
-# **vhybZ**: The Experience Platform for the Agentic Web
+# *vhybZ:* The Experience Platform for the Agentic Web
 
-> **TL;DR:** vhybZ is a platform for building and using dynamic, interactive digital experiences with AI and other users. Unlike typical AI chat, vhybZ sessions are not just text conversations; they are interactive canvases that support all kinds of media, as both input and output.
+> **TL;DR:** vhybZ is a platform for building and using immersive digital experiences in colab with AI and other users. Extending typical AI chat, vhybZ sessions are not just text conversations; they are generative canvases, with multimedia input and output.
 
 The advent of LLMs profoundly changed how we interact with software, fundamentally transforming the future of UX. ChatGPT didn't win on the strength of its language model alone; its dominance came from the radically new experience it delivered. In just months, it became a fixture on millions of devices worldwide, making AI feel useful and universal. They demoed how synergy between form and function pushes boundaries.
 
