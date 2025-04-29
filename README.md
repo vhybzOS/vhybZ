@@ -2,7 +2,7 @@
 
 > **TL;DR:** vhybZ is a platform for building and using dynamic, interactive digital experiences with AI and other users. Unlike typical AI chat, vhybZ sessions are not just text conversations; they are interactive canvases that support all kinds of media, as both input and output.
 
-AI models have fundamentally changed how we interact with software. UX was totally disrupted by the advent of LLMs. ChatGPT didn’t dominate by having the most advanced language model alone; it won because it delivered a radically new experience. In just months, it became a fixture on millions of devices worldwide, making AI feel useful and universal. It clearly demonstrated what’s possible when experience becomes the product.
+AI models have profoundly changed how we interact with software. UX fundamentally transformed by the advent of LLMs. ChatGPT didn’t dominate by having the most advanced language model alone; it won because it delivered a radically new experience. In just months, it became a fixture on millions of devices worldwide, making AI feel useful and universal. It clearly demonstrated what’s possible when experience becomes the product.
 
 **vhybZ** is the next leap in that direction: we’re making *experience creation* accessible to everyone, utilizing the latest advances in AI modality.
 
@@ -11,7 +11,7 @@ AI models have fundamentally changed how we interact with software. UX was total
 
 vhybZ is a mobile app that, at first glance, may resemble AI chat. But here, each session is a digital canvas, where creations are either discovered or crafted. Whether it’s a collaborative art piece, a learning lesson, or an agentic mobile app experience, vhybZ is where users and AIs co-create, not just consume.
 
-We're not talking AI slop or soulless automation, we're transforming **vibe coding** to an everyday utility. vhybZ is where human creativity and silicon intelligence merge, a true humagentic society, where the best of both worlds combine. We’re building the operating system for purposeful interaction, where anyone can become an architect of dynamic, evolving experiences. This is the end of the text wall era. vhybZ experiences are dynamic, time-based, and multimodal, crafted and evolved through a novel layer of memory and agency.
+We're not talking AI slop or soulless automation, we're reshaping **vibe coding** to an everyday utility. vhybZ is where human creativity and silicon intelligence merge, a true humagentic society, where the best of both worlds combine. We’re building the operating system for purposeful interaction, where anyone can become an architect of dynamic, evolving experiences. This is the end of the text wall era. vhybZ experiences are dynamic, time-based, and multimodal, crafted and evolved through a novel layer of memory and agency.
 
 ---
 
