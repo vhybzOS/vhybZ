@@ -1,4 +1,4 @@
-# *vhybZ:* The Experience OS, Web∞
+# *vhybZ:* The Experience OS, Web of Manifestation
 
 > **TL;DR:** vhybZ is a collaborative platform for building and using immersive digital experiences. Extending typical AI chat, vhybZ sessions are generative canvases, with multimedia input and output.
 
