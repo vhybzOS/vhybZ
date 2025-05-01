@@ -1,4 +1,4 @@
-# *vhybZ:* Invent living worlds with human and AI friends
+# *vhybZ OS:* Invent living worlds with human and AI friends
 
 > **TL;DR:** Digital immersive experiences that evolve with proactive agents, especially while offline: that's vhybZ. Built collaboratively, used purposefully. Extending typical AI chat, vhybZ sessions are generative canvases, with multimedia input and output.
 
