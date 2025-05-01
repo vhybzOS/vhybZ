@@ -1,6 +1,6 @@
 # *vhybZ:* Invent living worlds with human and AI friends
 
-> **TL;DR:** Digital immersive experiences that evolve with proactive AI, especially while offline: that's vhybZ. Built collaboratively, used purposefully. Extending typical AI chat, vhybZ sessions are generative canvases, with multimedia input and output.
+> **TL;DR:** Digital immersive experiences that evolve with proactive agents, especially while offline: that's vhybZ. Built collaboratively, used purposefully. Extending typical AI chat, vhybZ sessions are generative canvases, with multimedia input and output.
 
 The advent of LLMs profoundly changed how we interact with software, fundamentally transforming the future of UX. ChatGPT didn't win on the strength of its language model alone; its dominance came from the radically new experience it delivered. In just months, it became a fixture on millions of devices worldwide, making AI feel useful and universal. They demoed how synergy between form and function pushes boundaries, when experience becomes the product.
 
@@ -13,17 +13,17 @@ vhybZ is a mobile app that, at first glance, may resemble AI chat. But here, eac
 
 We're not talking AI slop or soulless automation. We're elevating **vibe coding** to an everyday utility; streamlining the iterative process that reshapes idea sketches to manifested fine art. vhybZ is where human creativity and silicon intelligence merge, a true humagentic society, where the best of both worlds combine. We’re building the operating system for purposeful interaction, where anyone can become an architect of dynamic, evolving experiences. The end of *the text wall era* is imminent! vhybZ experiences are dynamic, time-based, and multimodal, crafted and evolved through a novel layer of memory and agency.
 
----
+***
 
 ## The User Journey: From Prompt to Experience
 
-You open the vhybZ app on your phone, it looks like AI chat at first: there's a text box and a send button. You type, "Give me an egg fried rice recipe". But instead of replying with text, vhybZ instantly renders a full-fledged mobile app, right in the space where the chat would appear in other apps.
+You open the vhybZ app on your phone. Below the text input area, you see a tool pallet [maybe mention default Prompt tool visually]. This lets you go beyond simple text input, defining the nature of your creative canvas from the start. You type, "Give me an egg fried rice recipe". Instead of replying with text, vhybZ instantly renders a full-fledged mobile app, right in the space where the chat would appear in other apps.
 
 Now, you see an animated UI: images of a bowl of rice and a pan, showing the rice being added to the pan, and a "Next Step" button. As you follow along, each time you tap "Next Step", the images, animations, and instructions update to guide you through the process.
 
 Here's where vhybZ experiences are different: you *do* things *while* the AI collaborates with you, it's not Wikipedia! At one step, the experience nudges you to take a picture of your pan to check your progress. You tap the camera button, snap a photo, and send it. The screen flashes yellow: "You're overdoing it! Turn off the stove!", giving you real-time, personalized feedback.
 
-> In a normal chatbot, you’d just get a recipe in text. In vhybZ, you get a living, interactive guide. 
+> In a normal chatbot, you’d just get a recipe in text. In vhybZ, you get a living, interactive guide.
 >
 > vhybZ experiences are active and collaborative, setting a new standard above the passive responses of current apps.
 
@@ -32,13 +32,13 @@ Here's where vhybZ experiences are different: you *do* things *while* the AI col
 - **Multimodal Responses**: Rich, interactive feedback, never just a wall of text.
 - **Remix & Attribution**: Everything you create is yours, remixable and credited, shares in revenue from usage by others.
 
----
+***
 
 ## Why Experiences, Not Just Responses?
 
 AI today is largely reactive, stateless, and forgettable. You type a prompt, get a response, and the interaction often ends there. Chatbots answer questions, image generators spit out assets, but LLMs are people pleasers, won't stick to a persistent goal.
 
-vhybZ breaks this cycle by introducing **experiences**. Unlike prompting and losing the relevant solution in a flood of text, vhybZ experiences are designed for purpose and permanence.
+vhybZ breaks this cycle by introducing **experiences**. Unlike prompting and losing the relevant solution in a flood of text, vhybZ experiences are designed for purpose and permanence. The problem with AI that won't stick to a persistent goal is solved here.
 
 Think about the evolution of web search. Early search was basic keyword matching; Google evolved it by moving to *semantic search*, understanding intent and providing interactive widgets in response to queries. With generic LLM chatbots, we've regressed, lost that magic of quickly getting to a destination! Relying instead on complex *prompt engineering*, and hoping to magically generate the desired result within a conversational flow.
 
@@ -46,9 +46,9 @@ vhybZ brings back the power of targeted utility. Instead of wrestling with chatb
 
 Simply searching for `"set up <brand name> smart TV"` will instantly launch an interactive, step-by-step experience crafted by an expert or even the manufacturer. This experience guides you with visuals, provides real-time troubleshooting, and adapts based on your actions; you can even share pictures, voice, or video *while you are doing it* to get specific guidance. This isn't a static guide or a long-winded chatbot explanation; it's a living, purposeful interaction layer.
 
-Here the fundamental shift lies: moving from trying to *prompt* a general model into performing a specific task, to directly accessing a curated, **intelligent experience** designed for that task. These experiences are alive; unfolding over time, with two-way multimodal communication. Crucially, they are **collaborative creations**; woven together from the craft and iterations of people who had a similar need, yet custom-fit for you. Because vhybZ understands your specific situation and goal, complementary assets can be generated  *on the fly* for this tailoring. You can then iterate over it with prompts, refine the experience for yourself, and likely for next person in line as well. This unique architecture allows building on top of others' work, remix their versions, and maximize standing on the shoulders of giants (and AIs)!
+Here the fundamental shift lies: moving from trying to *prompt* a general model into performing a specific task, to directly accessing a curated, **intelligent experience** designed for that task. These experiences are alive; unfolding over time, with two-way multimodal communication. Crucially, they are **collaborative creations**; woven together from the craft and iterations of people who had a similar need, yet custom-fit for you. Because vhybZ understands your specific situation and goal, complementary assets can be generated on the fly for this tailoring. You can then iterate over it with prompts, refine the experience for yourself, and likely for next person in line as well. This unique architecture allows building on top of others' work, remix their versions, and maximize standing on the shoulders of giants (and AIs)!
 
----
+***
 
 ## The vhybZ Vision: From Passive to Purposeful
 
@@ -63,7 +63,7 @@ To embody this vision and these principles, we implement two fundamental improve
 1.  **User-Sovereign Assets:** We move all digital assets to user space. Everything is treated as portable files, easily moved from and to other destinations; ensuring vhybZ can't become a walled garden, by design.
 2.  **Open, Participatory Infrastructure:** Everything, importantly the backend, is MIT open source with a straightforward package for deployment. Don't like our subscription tiers? Join the collective backend infrastructure; not only do you avoid subscription costs, but you join forces with the mesh AI network and share in the revenue from usage across the collective.
 
----
+***
 
 ## The Engine: Curated AI Power at Your Fingertips
 
@@ -75,21 +75,21 @@ vhybZ cuts through this complexity. Our platform acts as an intelligent model ag
 
 This seamless, optimized access to powerful, diverse AI models is the core utility that fuels the dynamic, multimodal experiences you co-create on vhybZ and is the primary value unlocked by our subscription tiers. It's the engine that makes purposeful interaction and remixing digital realities truly possible.
 
----
+***
 
 ## Soulmades & SOUL: Living Memory, Creative Lineage
 
 At the heart of vhybZ is SOUL (Specific and Objective Understanding Logic), our open framework for building meta-agents called **soulmades**. They're more than mere reasoning engines; they are living nodes in your digital memory, weaving together state, context, and creative lineage. With SOUL, these *meta-agents* transcend simple logic: they adapt, evolve, and amplify your intent, reaching for understanding, empathy, and even emotion as they collaborate with you.
 
-Soulmades maintain and upgrade the experiences you create, on autopilot. Learning from every interaction and remix. They enable:
-- **Purposeful Agency**: Acting when it matters, not just when prompted.
+Soulmades maintain and upgrade the experiences you create, on autopilot. Learning from every interaction and remix. This proactive nature, guided by your input and constrained by your resource budget, allows them to continue building and evolving your creations even while you're offline. They enable:
+- **Purposeful Agency**: Acting when it matters, empowered to go **unprompted**.
 - **Multimodal Tracking**: Storing metadata about perceived interactions.
 - **Society of Minds**: Systems of interacting soulmades, each with unique drives and perspectives.
 - **Extensible Intelligence**: Bring your own models, knowledge, and history.
 
 > SOUL Framework: [GitHub link](https://github.com/vhybZApp/SOUL)
 
----
+***
 
 ## Confidant: Give your experience sensors and motors!
 
@@ -99,9 +99,9 @@ While soulmades excel at reasoning, co-creation, and managing experiences within
 
 Think of Confidant as the practical enabler of intentions. It operates as a highly performant, cross-platform service (built in Go) that translates a soulmade's agenda into concrete actions outside the vhybZ app:
 
-*   **Digital Dexterity:** Interacting with existing desktop applications, web interfaces, or operating system elements via programmatic control of mouse, keyboard, and screen analysis.
-*   **Physical Embodiment:** Providing the interface layer to control peripherals connected to desktop or edge devices, extending soulmades' agency to robotics or IoT interactions.
-*   **Cross-App Synergy:** Acting as a coordination point allowing soulmades to orchestrate tasks across multiple, disparate applications based on user prompts or their internal agenda.
+* **Digital Dexterity:** Interacting with existing desktop applications, web interfaces, or operating system elements via programmatic control of mouse, keyboard, and screen analysis.
+* **Physical Embodiment:** Providing the interface layer to control peripherals connected to desktop or edge devices, extending soulmades' agency to robotics or IoT interactions.
+* **Cross-App Synergy:** Acting as a coordination point allowing soulmades to orchestrate tasks across multiple, disparate applications based on user prompts or their internal agenda.
 
 Confidant allows soulmades, guided by SOUL's logic, to not only *reason* but also *do*: automating workflows, controlling devices, and interacting with legacy systems, truly injecting autonomy into existing apps without requiring deep integration.
 
@@ -111,7 +111,7 @@ Confidant allows soulmades, guided by SOUL's logic, to not only *reason* but als
   <img src="./assets/cover.png" alt="Confidant Demo" style="max-width: 40%;">
 </a>
 
----
+***
 
 ## Why Now? The World is Ready for Agentic Creation
 
@@ -120,26 +120,26 @@ Confidant allows soulmades, guided by SOUL's logic, to not only *reason* but als
 - **Agency & Creativity matter**, people crave tools to co-create, not just consume.
 - **Remix culture is booming**, vhybZ is the platform for collaborative, evolving digital realities.
 
----
+***
 
 ## What Makes vhybZ Different?
 
 - **Experiences, not responses**: Time-based, interactive, and co-created.
-- **Commons & Remixability**: Every creation is a node in the Morphic Consensus Graph, attributed, remixable, and evolving.
+- **Commons & Remixability**: Every creation is a node in **ASSEMBLE**, our auto-evolving collective memory, attributed, remixable, and evolving.
 - **Plug-and-play extensibility**: From LLMs to custom skills, vhybZ is modular by design.
 - **Intuitive, not intimidating**: Search, remix, and collaborate, no prompt engineering degree required.
 
----
+***
 
 ## Under the Hood: Architecture for the Agentic Web
 
 - **Frontend**: vhybZ app (Android/iOS/web), a portal for Experiences.
 - **Runtime**: vhybRunt engine renders and mediates all interactions.
 - **Agents**: Your soulmades, powered by SOUL, always learning and adapting.
-- **Backend**: Lattice for distributed compute/storage, MCP for protocol, MCG for knowledge.
+- **Backend**: Lattice for distributed compute/storage, MCP for protocol, **ASSEMBLE** for knowledge. ASSEMBLE serves as the auto-evolving collective memory and state for all experiences and agents on the platform.
 - **Commons**: Every Experience, remix, and knowledge fragment is discoverable, remixable, and attributed.
 
----
+***
 
 ## Ready to Experience Web∞?
 
