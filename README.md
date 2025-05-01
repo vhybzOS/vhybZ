@@ -1,6 +1,6 @@
 # *vhybZ:* Invent living worlds with human and AI friends
 
-> **TL;DR:** vhybZ is a collaborative platform for building and using immersive digital experiences. Extending typical AI chat, vhybZ sessions are generative canvases, with multimedia input and output.
+> **TL;DR:** Digital immersive experiences that evolve with proactive AI, especially while offline: that's vhybZ. Built collaboratively, used purposefully. Extending typical AI chat, vhybZ sessions are generative canvases, with multimedia input and output.
 
 The advent of LLMs profoundly changed how we interact with software, fundamentally transforming the future of UX. ChatGPT didn't win on the strength of its language model alone; its dominance came from the radically new experience it delivered. In just months, it became a fixture on millions of devices worldwide, making AI feel useful and universal. They demoed how synergy between form and function pushes boundaries, when experience becomes the product.
 
