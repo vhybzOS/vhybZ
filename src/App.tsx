@@ -1,13 +1,14 @@
-import './App.css'
+import { ThemeProvider } from "@/components/theme-provider"
+import { Button } from "@/components/ui/button"
+import { ModeToggle } from "@/components/mode-toggle"
 
 function App() {
   return (
-    <>
-      <h1>VhybZ + React</h1>
-      <p>
-        Initialization is done!
-      </p>
-    </>
+    <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+      {/* {children} */}
+      <ModeToggle />
+      <Button>Outline</Button>
+    </ThemeProvider>
   )
 }
 
