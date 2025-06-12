@@ -27,6 +27,7 @@
     "@react-router/node": "^7.6.2",
     "@tailwindcss/vite": "^4.1.8",
     "ai": "^4.3.16",
+    "better-auth": "^1.2.9",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "isbot": "^5",

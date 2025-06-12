@@ -27,16 +27,26 @@ jobs:
         with:
           deno-version: v2.x
 
-      - name: Build step
-        run: cd server && deno task build
-        # Only run if server/deno.json exists and has build task
+      - name: Cache Deno dependencies
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cache/deno
+            ~/.deno
+          key: ${{ runner.os }}-deno-${{ hashFiles('server/deno.json', 'server/deno.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-deno-
+
+      - name: Cache dependencies
+        run: cd server && deno cache --config deno-hono.json hono-main.ts
 
       - name: Upload to Deno Deploy
         uses: denoland/deployctl@v1
         with:
           project: "vhybz-server"
-          entrypoint: "main.ts"
+          entrypoint: "hono-main.ts"
           root: "server"
+          import-map: "deno-hono.json"
         env:
           MONGODB_ATLAS_URI: ${{ secrets.MONGODB_ATLAS_URI }}
           GOOGLE_CLIENT_ID: ${{ secrets.GOOGLE_CLIENT_ID }}

@@ -7,6 +7,7 @@ import {
   ScrollRestoration,
 } from "react-router";
 import { ThemeProvider } from "@/components/theme-provider";
+import { AuthProvider } from "@/contexts/AuthContext";
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -21,7 +22,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
       </head>
       <body>        
         <ThemeProvider defaultTheme="dark" storageKey="vhybZ-ui-theme">
-          {children}
+          <AuthProvider>
+            {children}
+          </AuthProvider>
         </ThemeProvider>
         <ScrollRestoration />
         <Scripts />
