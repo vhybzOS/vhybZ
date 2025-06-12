@@ -1,0 +1,17 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Debug LangGraph Dev Server",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": [
+        "@langchain/langgraph-cli@latest",
+        "dev"
+      ],
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen"
+    }
+  ]
+}
