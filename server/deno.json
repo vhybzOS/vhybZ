@@ -1,36 +1,23 @@
 {
   "tasks": {
-    "check": "deno fmt --check . && deno lint . && deno check **/*.ts && deno check **/*.tsx",
-    "dev": "deno run -A --watch=static/,routes/,main.ts dev.ts",
-    "build": "deno run -A dev.ts build",
-    "start": "deno run -A main.ts",
-    "update": "deno run -A -r jsr:@fresh/update ."
+    "dev": "deno run -A --watch hono-main.ts",
+    "start": "deno run -A hono-main.ts",
+    "check": "deno fmt --check . && deno lint . && deno check **/*.ts"
   },
-  "lint": {
-    "rules": {
-      "tags": ["recommended"]
-    }
-  },
-  "exclude": ["**/_fresh/*"],
   "imports": {
-    "@cmd-johnson/oauth2-client": "jsr:@cmd-johnson/oauth2-client@^2.0.0",
-    "fresh": "jsr:@fresh/core@2.0.0-alpha.34",
-    "@fresh/plugin-tailwind": "jsr:@fresh/plugin-tailwind@0.0.1-alpha.7",
-    "preact": "npm:preact@10.26.6",
-    "@preact/signals": "npm:@preact/signals@2.0.4",
-    "tailwindcss": "npm:tailwindcss@3.4.3",
+    "hono": "jsr:@hono/hono@^4.6.15",
+    "hono/cors": "jsr:@hono/hono@^4.6.15/cors",
+    "hono/logger": "jsr:@hono/hono@^4.6.15/logger",
+    "hono/secure-headers": "jsr:@hono/hono@^4.6.15/secure-headers",
+    "better-auth": "npm:better-auth@latest",
+    "better-auth/adapters/mongodb": "npm:better-auth@latest/adapters/mongodb",
+    "better-auth/plugins": "npm:better-auth@latest/plugins",
     "mongodb": "npm:mongodb@6.0.0",
-    "zod/v4": "npm:zod@3.25.42/v4",
     "zod": "npm:zod@3.25.42",
-    "std/dotenv": "jsr:@std/dotenv@0.224.0",
-    "std/http/cookie": "jsr:@std/http@0.224.0/cookie",
-    "oauth2_client": "jsr:@cmd-johnson/oauth2-client@^2.0.0"
+    "std/dotenv": "jsr:@std/dotenv@0.224.0"
   },
+  "nodeModulesDir": "auto",
   "compilerOptions": {
-    "lib": ["dom", "dom.asynciterable", "dom.iterable", "deno.ns"],
-    "jsx": "precompile",
-    "jsxImportSource": "preact",
-    "jsxPrecompileSkipElements": ["a", "img", "source", "body", "html", "head"]
-  },
-  "nodeModulesDir": "auto"
+    "lib": ["dom", "dom.asynciterable", "dom.iterable", "deno.ns"]
+  }
 }

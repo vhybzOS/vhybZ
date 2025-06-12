@@ -1,20 +1,19 @@
-import { App, fsRoutes, staticFiles } from "fresh";
-import { db, ensureDbConnection } from "./database.ts";
-import { define, type State } from "./utils.ts";
-import { OAuth2Client } from "oauth2_client";
-import { getCookies, setCookie } from "std/http/cookie";
-import { serveFile } from "https://deno.land/std@0.224.0/http/file_server.ts";
+import { Hono } from "hono";
+import { cors } from "hono/cors";
+import { logger } from "hono/logger";
+import { secureHeaders } from "hono/secure-headers";
 import { load } from "std/dotenv";
+import { betterAuth } from "better-auth";
+import { mongodbAdapter } from "better-auth/adapters/mongodb";
+import { MongoClient } from "mongodb";
 
 // Load environment variables from .env file in development
 const isDeno = typeof Deno !== "undefined";
-
-// Check multiple indicators for production environment
 const isProduction = isDeno && (
-  Deno.env.get("DENO_DEPLOYMENT_ID") !== undefined ||  // Running on Deno Deploy
-  Deno.env.get("MONGODB_ATLAS_URI") !== undefined ||   // Atlas URI provided (from GitHub secrets)
-  Deno.env.get("NODE_ENV") === "production" ||         // Explicit production flag
-  Deno.env.get("GITHUB_ACTIONS") === "true"            // Running in GitHub Actions
+  Deno.env.get("DENO_DEPLOYMENT_ID") !== undefined ||
+  Deno.env.get("MONGODB_ATLAS_URI") !== undefined ||
+  Deno.env.get("NODE_ENV") === "production" ||
+  Deno.env.get("GITHUB_ACTIONS") === "true"
 );
 
 if (!isProduction) {
@@ -26,246 +25,221 @@ if (!isProduction) {
   }
 }
 
-// OAuth2 client setup with environment-aware redirect URI
-const baseUrl = isProduction 
-  ? "https://vhybz-server.deno.dev" 
-  : "http://localhost:8000";
+// Helper function to get environment variables
+function getEnv(key: string, defaultValue?: string): string {
+  const value = Deno.env.get(key) ?? defaultValue;
+  if (value === undefined) {
+    throw new Error(`Missing required environment variable: ${key}`);
+  }
+  return value;
+}
 
-const oauth2Client = new OAuth2Client({
-  clientId: Deno.env.get("GOOGLE_CLIENT_ID") || "",
-  clientSecret: Deno.env.get("GOOGLE_CLIENT_SECRET") || "",
-  authorizationEndpointUri: "https://accounts.google.com/o/oauth2/v2/auth",
-  tokenUri: "https://oauth2.googleapis.com/token",
-  redirectUri: `${baseUrl}/auth/google/callback`,
-  defaults: {
-    scope: ["profile", "email"],
+// Configure MongoDB
+let mongoUri: string;
+let dbName: string;
+
+if (isProduction) {
+  mongoUri = getEnv("MONGODB_ATLAS_URI");
+  dbName = getEnv("MONGODB_DB_NAME", "vhybZ-prod");
+  console.log("🚀 Production environment detected - using MongoDB Atlas");
+} else {
+  mongoUri = getEnv("MONGODB_URI", "mongodb://localhost:27017");
+  dbName = getEnv("MONGODB_DB_NAME", "vhybZ-dev");
+  console.log("🛠️  Development environment detected - using local MongoDB");
+}
+
+console.log(`Database: ${dbName}`);
+
+// Initialize MongoDB client
+const mongoClient = new MongoClient(mongoUri);
+
+// Better Auth configuration
+const auth = betterAuth({
+  database: mongodbAdapter(mongoClient, {
+    databaseName: dbName,
+  }),
+  socialProviders: {
+    google: {
+      clientId: getEnv("GOOGLE_CLIENT_ID"),
+      clientSecret: getEnv("GOOGLE_CLIENT_SECRET"),
+      redirectURI: isProduction 
+        ? "https://vhybz-server.deno.dev/api/auth/callback/google"
+        : "http://localhost:8000/api/auth/callback/google",
+    },
+  },
+  session: {
+    expiresIn: 60 * 60 * 24 * 7, // 7 days
+    updateAge: 60 * 60 * 24, // 1 day
+  },
+  cors: {
+    origin: isProduction 
+      ? ["https://vhybz-studio.deno.dev", "https://vhybz.com"]
+      : ["http://localhost:5173", "http://localhost:3000"],
+    credentials: true,
   },
 });
 
-console.log(`🔐 OAuth redirect URI: ${baseUrl}/auth/google/callback`);
-
-// Session middleware
-const sessionMiddleware = define.middleware(async (ctx) => {
-  const cookies = getCookies(ctx.req.headers);
-  const sessionId = cookies.session;
-
-  if (sessionId) {
-    ctx.state.session = { userId: sessionId };
-  }
-
-  return await ctx.next();
-});
-
-// Auth middleware
-const requireAuth = define.middleware((ctx) => {
-  if (!ctx.state.session?.userId) {
-    return new Response("Unauthorized", { status: 401 });
-  }
-  return ctx.next();
-});
-
-
-// CORS middleware for React dev server
-const allowCORS = define.middleware(async (ctx) => {
-  // Handle preflight OPTIONS requests
-  if (ctx.req.method === 'OPTIONS') {
-    const response = new Response(null, { status: 204 });
-    response.headers.set('Access-Control-Allow-Origin', 'http://localhost:5173');
-    response.headers.set('Access-Control-Allow-Credentials', 'true');
-    response.headers.set('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-    response.headers.set('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-    return response;
-  }
-
-  const response = await ctx.next();
-  
-  // Allow credentials for auth cookies
-  response.headers.set('Access-Control-Allow-Origin', 'http://localhost:5173');
-  response.headers.set('Access-Control-Allow-Credentials', 'true');
-  response.headers.set('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-  response.headers.set('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-  
-  return response;
-});
-
-const dbMiddleware = define.middleware(async (ctx) => {
-  await ensureDbConnection();
-  return await ctx.next();
-});
-
-export const app = new App<State>();
+// Initialize Hono app
+const app = new Hono();
 
 // Global middleware
-app.use(sessionMiddleware).use(allowCORS).use(dbMiddleware).use(staticFiles());
+app.use("*", logger());
+app.use("*", secureHeaders());
 
-// Serve React app assets
-app.use(async (ctx) => {
-  const url = new URL(ctx.req.url);
-  
-  // Serve built React app assets and favicon
-  if (url.pathname.startsWith("/assets/") || url.pathname === "/logo.png") {
-    try {
-      const filePath = `./web-vhybZ/dist${url.pathname}`;
-      const response = await serveFile(ctx.req, filePath);
-      return response;
-    } catch {
-      return new Response("Not Found", { status: 404 });
-    }
-  }
-  
-  // Continue to next middleware
-  return await ctx.next();
+// CORS middleware
+app.use("*", cors({
+  origin: isProduction 
+    ? ["https://vhybz-studio.deno.dev", "https://vhybz.com"]
+    : ["http://localhost:5173", "http://localhost:3000"],
+  credentials: true,
+  allowMethods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowHeaders: ["Content-Type", "Authorization"],
+}));
+
+// Health check endpoint
+app.get("/health", (c) => {
+  return c.json({ 
+    status: "healthy", 
+    timestamp: new Date().toISOString(),
+    environment: isProduction ? "production" : "development",
+    database: dbName
+  });
 });
 
-// Google OAuth routes
-app.get("/auth/google", async (ctx) => {
-  const authUri = await oauth2Client.code.getAuthorizationUri();
-
-  const response = new Response(null, {
-    status: 302,
-    headers: {
-      Location: authUri.toString(),
-    },
-  });
-
-  setCookie(response.headers, {
-    name: "code_verifier",
-    value: authUri.codeVerifier,
-    httpOnly: true,
-    path: "/",
-    maxAge: 600, // 10 minutes
-  });
-
-  return response;
+// Better Auth routes - handles /api/auth/*
+app.on(["POST", "GET"], "/api/auth/**", (c) => {
+  return auth.handler(c.req.raw);
 });
 
-app.get("/auth/google/callback", async (ctx) => {
-  const url = new URL(ctx.req.url);
-  const code = url.searchParams.get("code");
-  const cookies = getCookies(ctx.req.headers);
-  const codeVerifier = cookies.code_verifier;
+// Protected API routes
+app.use("/api/me", async (c, next) => {
+  const session = await auth.api.getSession({
+    headers: c.req.header(),
+  });
 
-  if (!code || !codeVerifier) {
-    return new Response("Invalid request", { status: 400 });
+  if (!session) {
+    return c.json({ error: "Unauthorized" }, 401);
   }
 
+  c.set("user", session.user);
+  c.set("session", session.session);
+  await next();
+});
+
+// User profile endpoint
+app.get("/api/me", (c) => {
+  const user = c.get("user");
+  return c.json({ user });
+});
+
+// Conversations API (placeholder for now)
+app.get("/api/conversations", async (c) => {
+  const user = c.get("user");
+  // TODO: Implement conversation logic with MongoDB
+  return c.json({ conversations: [], userId: user?.id });
+});
+
+app.post("/api/conversations", async (c) => {
+  const user = c.get("user");
+  const body = await c.req.json();
+  // TODO: Implement conversation creation
+  return c.json({ success: true, userId: user?.id, data: body });
+});
+
+// Artifacts API (placeholder for now)  
+app.get("/api/artifacts", async (c) => {
+  const user = c.get("user");
+  // TODO: Implement artifact logic with MongoDB
+  return c.json({ artifacts: [], userId: user?.id });
+});
+
+app.post("/api/artifacts", async (c) => {
+  const user = c.get("user");
+  const body = await c.req.json();
+  // TODO: Implement artifact creation
+  return c.json({ success: true, userId: user?.id, data: body });
+});
+
+// Serve React app assets (for development)
+app.get("/assets/*", async (c) => {
+  const path = c.req.path;
   try {
-    const tokens = await oauth2Client.code.getToken(url, { codeVerifier });
-    const userInfo = await fetch(
-      "https://www.googleapis.com/oauth2/v3/userinfo",
-      {
-        headers: { Authorization: `Bearer ${tokens.accessToken}` },
-      },
-    ).then((r) => r.json());
-
-    const user = await db.findOrCreateUser({
-      id: userInfo.sub,
-      email: userInfo.email,
-      name: userInfo.name,
-      picture: userInfo.picture,
-    });
-
-    if (!user._id) {
-      throw new Error("User creation failed");
-    }
-
-    const response = new Response(null, {
-      status: 302,
-      headers: { Location: "/" },
-    });
-
-    setCookie(response.headers, {
-      name: "session",
-      value: user._id.toString(),
-      path: "/",
-      httpOnly: true,
-      secure: false,
-      maxAge: 60 * 60 * 24 * 7,
-    });
-
-    return response;
-  } catch (error) {
-    console.error("OAuth error:", error);
-    return new Response("Authentication failed", { status: 500 });
+    const file = await Deno.open(`./static${path}`, { read: true });
+    const readableStream = file.readable;
+    return new Response(readableStream);
+  } catch {
+    return c.notFound();
   }
 });
 
-// Protected route
-app.get("/profile", requireAuth, (ctx) => {
-  return new Response(`Welcome user ${ctx.state.session?.userId}`);
-});
-
-// Get current user
-app.get("/api/user", requireAuth, async (ctx) => {
+// Catch-all for React app (SPA routing)
+app.get("*", async (c) => {
   try {
-    const userId = ctx.state.session?.userId;
-    if (!userId) {
-      return new Response("Unauthorized", { status: 401 });
-    }
-
-    const user = await db.getUser(userId);
-    if (!user) {
-      return new Response("User not found", { status: 404 });
-    }
-
-    return Response.json(user);
-  } catch (error) {
-    console.error("Get user error:", error);
-    return new Response("Internal server error", { status: 500 });
+    const html = await Deno.readTextFile("./static/index.html");
+    return c.html(html);
+  } catch {
+    return c.html(`
+      <!DOCTYPE html>
+      <html>
+        <head>
+          <title>vhybZ Server</title>
+        </head>
+        <body>
+          <h1>🔥 vhybZ Hono Server</h1>
+          <p>Environment: ${isProduction ? "production" : "development"}</p>
+          <p>Database: ${dbName}</p>
+          <p>Auth: Better Auth + Google OAuth</p>
+          <a href="/api/auth/sign-in/google">Login with Google</a>
+        </body>
+      </html>
+    `);
   }
 });
 
-// Logout
-app.post("/auth/logout", () => {
-  const response = new Response(null, {
-    status: 302,
-    headers: { Location: "/" },
-  });
-
-  setCookie(response.headers, {
-    name: "session",
-    value: "",
-    path: "/",
-    expires: new Date(0),
-  });
-
-  return response;
-});
-
-// API routes from Fresh
-await fsRoutes(app, {
-  loadIsland: (path) => import(`./islands/${path}`),
-  loadRoute: (path) => import(`./routes/${path}`),
-});
-
-// Catch-all route to serve React app for frontend routes
-app.use(async (ctx) => {
-  const url = new URL(ctx.req.url);
-  
-  // Skip API routes, auth routes, and static assets
-  if (url.pathname.startsWith("/api/") || 
-      url.pathname.startsWith("/auth/") || 
-      url.pathname.startsWith("/assets/") ||
-      url.pathname.startsWith("/static/")) {
-    return await ctx.next();
-  }
-  
-  // Serve React app index.html for all other routes
-  try {
-    const response = await serveFile(ctx.req, "./web-vhybZ/dist/index.html");
-    return new Response(response.body, {
-      status: response.status,
-      headers: {
-        ...Object.fromEntries(response.headers),
-        "Content-Type": "text/html; charset=utf-8",
-      },
-    });
-  } catch (error) {
-    console.error("Error serving React app:", error);
-    return new Response("Internal Server Error", { status: 500 });
-  }
-});
-
-if (import.meta.main) {
-  await app.listen({ port: 8000 });
+// Connect to MongoDB on startup
+try {
+  await mongoClient.connect();
+  console.log("🔥 Successfully connected to MongoDB");
+  console.log("🔐 Better Auth configured with Google OAuth");
+} catch (error) {
+  console.error("❌ Failed to connect to MongoDB:", error);
+  Deno.exit(1);
 }
+
+// Graceful shutdown
+const shutdown = async () => {
+  console.log("\n🔥 Shutting down Hono server gracefully...");
+  try {
+    await mongoClient.close();
+    console.log("📄 MongoDB connection closed");
+  } catch (error) {
+    console.error("❌ Error during shutdown:", error);
+  }
+  Deno.exit(0);
+};
+
+// Handle shutdown signals
+const signals: Deno.Signal[] = ["SIGINT"];
+if (Deno.build.os !== "windows") {
+  signals.push("SIGTERM", "SIGQUIT");
+}
+
+signals.forEach((signal) => {
+  try {
+    Deno.addSignalListener(signal, shutdown);
+  } catch (error) {
+    console.warn(`⚠️  Failed to set up signal handler for ${signal}:`, error);
+  }
+});
+
+const PORT = Number(Deno.env.get("PORT")) || 8000;
+
+console.log(`🔥 Hono server starting on port ${PORT}`);
+console.log(`🌐 Environment: ${isProduction ? "production" : "development"}`);
+console.log(`🗄️  Database: ${dbName}`);
+console.log(`🔐 Auth: Better Auth + Google OAuth`);
+
+export default {
+  port: PORT,
+  fetch: app.fetch,
+};
