@@ -29,8 +29,7 @@ jobs:
       - name: Upload to Deno Deploy
         uses: denoland/deployctl@v1
         with:
-          project: "keyvanmsade-deno-vhybz-87"
+          project: "vhybz-server"
+          org: "vhybZ"
           entrypoint: "main.ts"
-          root: "."
-          
-          
+          root: "server"
