@@ -91,11 +91,33 @@ class Database {
   private isConnected = false;
 
   constructor() {
-    // Get MongoDB URI from environment variables or use default local URI
-    const mongoUri = getEnv("MONGODB_URI", "mongodb://localhost:27017");
-    this.dbName = getEnv("MONGODB_DB_NAME", "vhybZ");
+    // Auto-detect environment and set appropriate MongoDB configuration
+    const isDeno = typeof Deno !== "undefined";
+    const isProduction = isDeno && Deno.env.get("DENO_DEPLOYMENT_ID") !== undefined;
+    const isDevelopment = !isProduction;
 
+    // Configure MongoDB based on environment
+    let mongoUri: string;
+    let dbName: string;
+
+    if (isProduction) {
+      // Production: Use MongoDB Atlas (requires MONGODB_ATLAS_URI secret)
+      mongoUri = getEnv("MONGODB_ATLAS_URI");
+      dbName = getEnv("MONGODB_DB_NAME", "vhybZ-prod");
+      console.log("🚀 Production environment detected - using MongoDB Atlas");
+    } else {
+      // Development: Use local MongoDB
+      mongoUri = getEnv("MONGODB_URI", "mongodb://localhost:27017");
+      dbName = getEnv("MONGODB_DB_NAME", "vhybZ-dev");
+      console.log("🛠️  Development environment detected - using local MongoDB");
+    }
+
+    this.dbName = dbName;
     this.client = new MongoClient(mongoUri);
+
+    // Log environment info (without sensitive data)
+    console.log(`Database: ${dbName}`);
+    console.log(`MongoDB Host: ${mongoUri.split('@')[1] || 'localhost:27017'}`);
   }
 
   // Initialize database connection and collections

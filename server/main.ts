@@ -4,18 +4,38 @@ import { define, type State } from "./utils.ts";
 import { OAuth2Client } from "oauth2_client";
 import { getCookies, setCookie } from "std/http/cookie";
 import { serveFile } from "https://deno.land/std@0.224.0/http/file_server.ts";
+import { load } from "std/dotenv";
 
-// OAuth2 client setup
+// Load environment variables from .env file in development
+const isDeno = typeof Deno !== "undefined";
+const isProduction = isDeno && Deno.env.get("DENO_DEPLOYMENT_ID") !== undefined;
+
+if (!isProduction) {
+  try {
+    await load({ export: true });
+    console.log("🛠️  Loaded environment variables from .env file");
+  } catch (error) {
+    console.log("ℹ️  No .env file found, using system environment variables");
+  }
+}
+
+// OAuth2 client setup with environment-aware redirect URI
+const baseUrl = isProduction 
+  ? "https://vhybz-server.deno.dev" 
+  : "http://localhost:8000";
+
 const oauth2Client = new OAuth2Client({
   clientId: Deno.env.get("GOOGLE_CLIENT_ID") || "",
   clientSecret: Deno.env.get("GOOGLE_CLIENT_SECRET") || "",
   authorizationEndpointUri: "https://accounts.google.com/o/oauth2/v2/auth",
   tokenUri: "https://oauth2.googleapis.com/token",
-  redirectUri: "http://localhost:8000/auth/google/callback",
+  redirectUri: `${baseUrl}/auth/google/callback`,
   defaults: {
     scope: ["profile", "email"],
   },
 });
+
+console.log(`🔐 OAuth redirect URI: ${baseUrl}/auth/google/callback`);
 
 // Session middleware
 const sessionMiddleware = define.middleware(async (ctx) => {
