@@ -35,10 +35,9 @@ jobs:
         uses: denoland/deployctl@v1
         with:
           project: "vhybz-server"
-          org: "vhybZ"
           entrypoint: "main.ts"
           root: "server"
-          env: |
-            MONGODB_ATLAS_URI=${{ secrets.MONGODB_ATLAS_URI }}
-            GOOGLE_CLIENT_ID=${{ secrets.GOOGLE_CLIENT_ID }}
-            GOOGLE_CLIENT_SECRET=${{ secrets.GOOGLE_CLIENT_SECRET }}
+        env:
+          MONGODB_ATLAS_URI: ${{ secrets.MONGODB_ATLAS_URI }}
+          GOOGLE_CLIENT_ID: ${{ secrets.GOOGLE_CLIENT_ID }}
+          GOOGLE_CLIENT_SECRET: ${{ secrets.GOOGLE_CLIENT_SECRET }}

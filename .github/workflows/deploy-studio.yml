@@ -39,6 +39,5 @@ jobs:
         uses: denoland/deployctl@v1
         with:
           project: "vhybz-studio"
-          org: "vhybZ"
-          entrypoint: "https://deno.land/std@0.208.0/http/file_server.ts"
-          root: "studio/build"
+          entrypoint: "server.ts"
+          root: "studio"
