@@ -50,8 +50,13 @@ if (isProduction) {
 
 console.log(`Database: ${dbName}`);
 
-// Initialize MongoDB client
-const mongoClient = new MongoClient(mongoUri);
+// Initialize MongoDB client with connection options
+const mongoClient = new MongoClient(mongoUri, {
+  connectTimeoutMS: 10000,
+  serverSelectionTimeoutMS: 10000,
+  maxPoolSize: 10,
+  retryWrites: true,
+});
 
 // Better Auth configuration
 const auth = betterAuth({
@@ -113,17 +118,24 @@ app.on(["POST", "GET"], "/api/auth/**", (c) => {
 
 // Protected API routes
 app.use("/api/me", async (c, next) => {
-  const session = await auth.api.getSession({
-    headers: c.req.header(),
-  });
+  try {
+    await ensureMongoConnection();
+    
+    const session = await auth.api.getSession({
+      headers: c.req.header(),
+    });
 
-  if (!session) {
-    return c.json({ error: "Unauthorized" }, 401);
+    if (!session) {
+      return c.json({ error: "Unauthorized" }, 401);
+    }
+
+    c.set("user", session.user);
+    c.set("session", session.session);
+    await next();
+  } catch (error) {
+    console.error("Database connection error:", error);
+    return c.json({ error: "Database connection failed" }, 503);
   }
-
-  c.set("user", session.user);
-  c.set("session", session.session);
-  await next();
 });
 
 // User profile endpoint
@@ -196,14 +208,27 @@ app.get("*", async (c) => {
   }
 });
 
-// Connect to MongoDB on startup
+// Lazy MongoDB connection helper
+let isConnected = false;
+const ensureMongoConnection = async () => {
+  if (!isConnected) {
+    try {
+      await mongoClient.connect();
+      isConnected = true;
+      console.log("🔥 Successfully connected to MongoDB");
+    } catch (error) {
+      console.error("❌ Failed to connect to MongoDB:", error);
+      throw error;
+    }
+  }
+};
+
+// Connect to MongoDB on startup (but don't fail if it doesn't work)
 try {
-  await mongoClient.connect();
-  console.log("🔥 Successfully connected to MongoDB");
+  await ensureMongoConnection();
   console.log("🔐 Better Auth configured with Google OAuth");
 } catch (error) {
-  console.error("❌ Failed to connect to MongoDB:", error);
-  Deno.exit(1);
+  console.log("⚠️  Initial MongoDB connection failed, will retry on first request");
 }
 
 // Graceful shutdown
@@ -215,7 +240,7 @@ const shutdown = async () => {
   } catch (error) {
     console.error("❌ Error during shutdown:", error);
   }
-  Deno.exit(0);
+  // Don't call Deno.exit() in Deno Deploy
 };
 
 // Handle shutdown signals
