@@ -38,15 +38,15 @@ jobs:
             ${{ runner.os }}-deno-
 
       - name: Cache dependencies
-        run: cd server && deno cache --config deno-hono.json hono-main.ts
+        run: cd server && deno cache --config deno.json main.ts
 
       - name: Upload to Deno Deploy
         uses: denoland/deployctl@v1
         with:
           project: "vhybz-server"
-          entrypoint: "hono-main.ts"
+          entrypoint: "main.ts"
           root: "server"
-          import-map: "deno-hono.json"
+          import-map: "deno.json"
         env:
           MONGODB_ATLAS_URI: ${{ secrets.MONGODB_ATLAS_URI }}
           GOOGLE_CLIENT_ID: ${{ secrets.GOOGLE_CLIENT_ID }}
