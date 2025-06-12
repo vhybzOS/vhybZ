@@ -64,10 +64,9 @@ const requireAuth = define.middleware((ctx) => {
   return ctx.next();
 });
 
-export const app = new App<State>();
 
 // CORS middleware for React dev server
-app.use(async (ctx) => {
+const allowCORS = define.middleware(async (ctx) => {
   // Handle preflight OPTIONS requests
   if (ctx.req.method === 'OPTIONS') {
     const response = new Response(null, { status: 204 });
@@ -89,8 +88,15 @@ app.use(async (ctx) => {
   return response;
 });
 
+const dbMiddleware = define.middleware(async (ctx) => {
+  await ensureDbConnection();
+  return await ctx.next();
+});
+
+export const app = new App<State>();
+
 // Global middleware
-app.use(sessionMiddleware).use(staticFiles());
+app.use(sessionMiddleware).use(allowCORS).use(dbMiddleware).use(staticFiles());
 
 // Serve React app assets
 app.use(async (ctx) => {
@@ -225,8 +231,6 @@ app.post("/auth/logout", () => {
 
   return response;
 });
-
-await ensureDbConnection();
 
 // API routes from Fresh
 await fsRoutes(app, {
