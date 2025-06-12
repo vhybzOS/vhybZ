@@ -93,7 +93,14 @@ class Database {
   constructor() {
     // Auto-detect environment and set appropriate MongoDB configuration
     const isDeno = typeof Deno !== "undefined";
-    const isProduction = isDeno && Deno.env.get("DENO_DEPLOYMENT_ID") !== undefined;
+    
+    // Check multiple indicators for production environment
+    const isProduction = isDeno && (
+      Deno.env.get("DENO_DEPLOYMENT_ID") !== undefined ||  // Running on Deno Deploy
+      Deno.env.get("MONGODB_ATLAS_URI") !== undefined ||   // Atlas URI provided (from GitHub secrets)
+      Deno.env.get("NODE_ENV") === "production" ||         // Explicit production flag
+      Deno.env.get("GITHUB_ACTIONS") === "true"            // Running in GitHub Actions
+    );
     const isDevelopment = !isProduction;
 
     // Configure MongoDB based on environment
