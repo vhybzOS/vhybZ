@@ -2,7 +2,8 @@
   "name": "agent-vhybz",
   "packageManager": "yarn@1.22.22",
   "scripts": {
-    "dev": "npx @langchain/langgraph-cli@latest dev"
+    "dev": "npx @langchain/langgraph-cli@latest dev",
+    "dev:debug": "npx --node-options=--inspect @langchain/langgraph-cli@latest dev"
   },
   "dependencies": {
     "@langchain/community": "^0.3.3",
