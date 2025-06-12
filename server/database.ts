@@ -86,11 +86,19 @@ function parseWithZod<T>(
 }
 
 class Database {
-  private client: MongoClient;
-  private dbName: string;
+  private client: MongoClient | null = null;
+  private dbName: string | null = null;
   private isConnected = false;
 
   constructor() {
+    // Don't initialize MongoDB connection during construction
+    // This allows the module to be imported during build without requiring env vars
+  }
+
+  // Lazy initialization of MongoDB connection
+  private initializeConnection() {
+    if (this.client) return; // Already initialized
+
     // Auto-detect environment and set appropriate MongoDB configuration
     const isDeno = typeof Deno !== "undefined";
     
@@ -101,7 +109,6 @@ class Database {
       Deno.env.get("NODE_ENV") === "production" ||         // Explicit production flag
       Deno.env.get("GITHUB_ACTIONS") === "true"            // Running in GitHub Actions
     );
-    const isDevelopment = !isProduction;
 
     // Configure MongoDB based on environment
     let mongoUri: string;
@@ -131,6 +138,13 @@ class Database {
   async connect(): Promise<void> {
     if (this.isConnected) return;
 
+    // Initialize connection configuration if not already done
+    this.initializeConnection();
+
+    if (!this.client) {
+      throw new Error("Failed to initialize MongoDB client");
+    }
+
     try {
       await this.client.connect();
       this.isConnected = true;
@@ -146,7 +160,7 @@ class Database {
 
   // Close the database connection
   async disconnect(): Promise<void> {
-    if (this.isConnected) {
+    if (this.isConnected && this.client) {
       await this.client.close();
       this.isConnected = false;
       console.log("MongoDB connection closed");
@@ -155,6 +169,9 @@ class Database {
 
   // Initialize collections with schema validation
   private async initializeCollections(): Promise<void> {
+    if (!this.client || !this.dbName) {
+      throw new Error("Database client not initialized");
+    }
     const db = this.client.db(this.dbName);
 
     // Create users collection with indexes
@@ -204,6 +221,9 @@ class Database {
 
   // User operations
   private get users() {
+    if (!this.client || !this.dbName) {
+      throw new Error("Database client not initialized. Call connect() first.");
+    }
     return this.client.db(this.dbName).collection<User>("users");
   }
 
@@ -281,6 +301,9 @@ class Database {
 
   // App operations
   private get apps() {
+    if (!this.client || !this.dbName) {
+      throw new Error("Database client not initialized. Call connect() first.");
+    }
     return this.client.db(this.dbName).collection<App>("apps");
   }
 
