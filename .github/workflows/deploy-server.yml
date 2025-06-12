@@ -1,18 +1,22 @@
-name: Deploy
+name: Deploy Server
 on:
   push:
     branches: main
+    paths: 
+      - 'server/**'
+      - '.github/workflows/deploy-server.yml'
   pull_request:
     branches: main
+    paths: 
+      - 'server/**'
 
 jobs:
   deploy:
-    name: Deploy
+    name: Deploy Server
     runs-on: ubuntu-latest
-
     permissions:
-      id-token: write # Needed for auth with Deno Deploy
-      contents: read # Needed to clone the repository
+      id-token: write
+      contents: read
 
     steps:
       - name: Clone repository
@@ -24,7 +28,8 @@ jobs:
           deno-version: v2.x
 
       - name: Build step
-        run: "deno task build"
+        run: cd server && deno task build
+        # Only run if server/deno.json exists and has build task
 
       - name: Upload to Deno Deploy
         uses: denoland/deployctl@v1
