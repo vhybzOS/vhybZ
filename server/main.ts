@@ -34,6 +34,11 @@ function getEnv(key: string, defaultValue?: string): string {
   return value;
 }
 
+// Helper function to get optional environment variables
+function getOptionalEnv(key: string, defaultValue?: string): string | undefined {
+  return Deno.env.get(key) ?? defaultValue;
+}
+
 // Configure MongoDB
 let mongoUri: string;
 let dbName: string;
@@ -58,20 +63,21 @@ const mongoClient = new MongoClient(mongoUri, {
   retryWrites: true,
 });
 
+// Check if Google OAuth is configured
+const googleClientId = getOptionalEnv("GOOGLE_CLIENT_ID");
+const googleClientSecret = getOptionalEnv("GOOGLE_CLIENT_SECRET");
+const hasGoogleAuth = googleClientId && googleClientSecret;
+
+if (!hasGoogleAuth && !isProduction) {
+  console.log("⚠️  Google OAuth not configured - running in dev mode with mock auth");
+  console.log("ℹ️  To enable Google OAuth, set GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET");
+}
+
 // Better Auth configuration
-const auth = betterAuth({
+const authConfig: any = {
   database: mongodbAdapter(mongoClient, {
     databaseName: dbName,
   }),
-  socialProviders: {
-    google: {
-      clientId: getEnv("GOOGLE_CLIENT_ID"),
-      clientSecret: getEnv("GOOGLE_CLIENT_SECRET"),
-      redirectURI: isProduction
-        ? "https://vhybz-server.deno.dev/api/auth/callback/google"
-        : "http://localhost:8000/api/auth/callback/google",
-    },
-  },
   session: {
     expiresIn: 60 * 60 * 24 * 7, // 7 days
     updateAge: 60 * 60 * 24, // 1 day
@@ -82,7 +88,22 @@ const auth = betterAuth({
       : ["http://localhost:5173", "http://localhost:3000"],
     credentials: true,
   },
-});
+};
+
+// Add Google OAuth only if configured or in production
+if (hasGoogleAuth || isProduction) {
+  authConfig.socialProviders = {
+    google: {
+      clientId: googleClientId || "mock-client-id",
+      clientSecret: googleClientSecret || "mock-client-secret", 
+      redirectURI: isProduction
+        ? "https://vhybz-server.deno.dev/api/auth/callback/google"
+        : "http://localhost:8000/api/auth/callback/google",
+    },
+  };
+}
+
+const auth = betterAuth(authConfig);
 
 // Initialize Hono app
 const app = new Hono();
@@ -119,10 +140,52 @@ app.on(["POST", "GET"], "/api/auth/**", (c) => {
   return auth.handler(c.req.raw);
 });
 
+// Development-only mock login endpoint
+if (!isProduction && !hasGoogleAuth) {
+  app.post("/api/auth/dev-login", async (c) => {
+    const body = await c.req.json();
+    const mockUser = {
+      id: "dev-user-123",
+      email: body.email || "dev@example.com",
+      name: body.name || "Dev User",
+      image: "https://api.dicebear.com/7.x/avataaars/svg?seed=dev",
+      emailVerified: new Date(),
+    };
+    
+    // Create a mock session (this is simplified - in real Better Auth this would be more complex)
+    return c.json({ 
+      success: true, 
+      user: mockUser,
+      message: "Mock login successful - dev mode only"
+    });
+  });
+
+  app.get("/api/auth/dev-logout", (c) => {
+    return c.json({ success: true, message: "Mock logout successful" });
+  });
+}
+
 // Protected API routes
 app.use("/api/me", async (c, next) => {
   try {
     await ensureMongoConnection();
+
+    // In dev mode without Google Auth, allow mock authentication
+    if (!isProduction && !hasGoogleAuth) {
+      const devAuth = c.req.header("x-dev-auth");
+      if (devAuth === "true") {
+        const mockUser = {
+          id: "dev-user-123",
+          email: "dev@example.com", 
+          name: "Dev User",
+          image: "https://api.dicebear.com/7.x/avataaars/svg?seed=dev",
+        };
+        c.set("user", mockUser);
+        c.set("session", { id: "dev-session-123" });
+        await next();
+        return;
+      }
+    }
 
     const session = await auth.api.getSession({
       headers: c.req.header(),
@@ -193,6 +256,34 @@ app.get("*", async (c) => {
     const html = await Deno.readTextFile("./static/index.html");
     return c.html(html);
   } catch {
+    const authLinks = hasGoogleAuth || isProduction
+      ? '<a href="/api/auth/sign-in/google">Login with Google</a>'
+      : `
+        <div style="background: #fff3cd; padding: 15px; border-radius: 5px; margin: 20px 0;">
+          <h3>🛠️ Development Mode</h3>
+          <p>Google OAuth not configured. Using mock authentication.</p>
+          <p>To enable Google OAuth, set these environment variables:</p>
+          <ul>
+            <li>GOOGLE_CLIENT_ID</li>
+            <li>GOOGLE_CLIENT_SECRET</li>
+          </ul>
+          <button onclick="mockLogin()" style="background: #007bff; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">
+            Mock Login (Dev Only)
+          </button>
+        </div>
+        <script>
+          async function mockLogin() {
+            const response = await fetch('/api/auth/dev-login', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ email: 'dev@example.com', name: 'Dev User' })
+            });
+            const data = await response.json();
+            alert(data.message);
+          }
+        </script>
+      `;
+
     return c.html(`
       <!DOCTYPE html>
       <html>
@@ -203,8 +294,8 @@ app.get("*", async (c) => {
           <h1>🔥 vhybZ Hono Server</h1>
           <p>Environment: ${isProduction ? "production" : "development"}</p>
           <p>Database: ${dbName}</p>
-          <p>Auth: Better Auth + Google OAuth</p>
-          <a href="/api/auth/sign-in/google">Login with Google</a>
+          <p>Auth: Better Auth${hasGoogleAuth ? " + Google OAuth" : " (Mock Mode)"}</p>
+          ${authLinks}
         </body>
       </html>
     `);
