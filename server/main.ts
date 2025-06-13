@@ -264,7 +264,9 @@ console.log(`🌐 Environment: ${isProduction ? "production" : "development"}`);
 console.log(`🗄️  Database: ${dbName}`);
 console.log(`🔐 Auth: Better Auth + Google OAuth`);
 
-export default {
+Deno.serve({ 
   port: PORT,
-  fetch: app.fetch,
-};
+  onListen: () => {
+    console.log(`🚀 Server ready at http://localhost:${PORT}`);
+  }
+}, app.fetch);
