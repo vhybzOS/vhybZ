@@ -1,7 +1,7 @@
 {
   "tasks": {
-    "dev": "deno serve -A --watch main.ts",
-    "start": "deno serve -A main.ts",
+    "dev": "deno run -A --watch=main.ts,deno.json main.ts",
+    "start": "deno serve -A main.ts", 
     "check": "deno fmt --check . && deno lint . && deno check **/*.ts",
     "fmt": "deno fmt && deno task check"
   },

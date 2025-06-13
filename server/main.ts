@@ -66,7 +66,7 @@ const mongoClient = new MongoClient(mongoUri, {
 // Check if Google OAuth is configured
 const googleClientId = getOptionalEnv("GOOGLE_CLIENT_ID");
 const googleClientSecret = getOptionalEnv("GOOGLE_CLIENT_SECRET");
-const hasGoogleAuth = googleClientId && googleClientSecret;
+const hasGoogleAuth = !!(googleClientId && googleClientSecret && googleClientId.trim() && googleClientSecret.trim());
 
 if (!hasGoogleAuth && !isProduction) {
   console.log("⚠️  Google OAuth not configured - running in dev mode with mock auth");
@@ -75,9 +75,10 @@ if (!hasGoogleAuth && !isProduction) {
 
 // Better Auth configuration
 const authConfig: any = {
-  database: mongodbAdapter(mongoClient, {
+  // Temporarily disable MongoDB in dev mode to isolate the issue
+  database: isProduction ? mongodbAdapter(mongoClient, {
     databaseName: dbName,
-  }),
+  }) : undefined,
   session: {
     expiresIn: 60 * 60 * 24 * 7, // 7 days
     updateAge: 60 * 60 * 24, // 1 day
@@ -89,6 +90,10 @@ const authConfig: any = {
     credentials: true,
   },
 };
+
+if (!isProduction) {
+  console.log("🛠️  Running without MongoDB in dev mode to isolate connection issues");
+}
 
 // Add Google OAuth only if configured or in production
 if (hasGoogleAuth || isProduction) {
@@ -103,7 +108,18 @@ if (hasGoogleAuth || isProduction) {
   };
 }
 
-const auth = betterAuth(authConfig);
+let auth: any;
+try {
+  auth = betterAuth(authConfig);
+  console.log("🔐 Better Auth initialized successfully");
+} catch (error) {
+  console.error("❌ Better Auth initialization failed:", error);
+  console.error("This might be due to MongoDB connection issues or missing environment variables");
+  if (!isProduction) {
+    Deno.exit(1);
+  }
+  throw error;
+}
 
 // Initialize Hono app
 const app = new Hono();
@@ -325,46 +341,107 @@ try {
   console.log(
     "⚠️  Initial MongoDB connection failed, will retry on first request",
   );
+  console.error("MongoDB error details:", error.message);
 }
 
 // Graceful shutdown
+let isShuttingDown = false;
 const shutdown = async () => {
+  if (isShuttingDown) return;
+  isShuttingDown = true;
+  
   console.log("\n🔥 Shutting down Hono server gracefully...");
+  
+  // Close server first
+  if (server) {
+    try {
+      server.shutdown();
+      console.log("🌐 HTTP server closed");
+    } catch (error) {
+      console.error("❌ Error closing server:", error);
+    }
+  }
+  
+  // Then close MongoDB
   try {
     await mongoClient.close();
     console.log("📄 MongoDB connection closed");
   } catch (error) {
     console.error("❌ Error during shutdown:", error);
   }
-  // Don't call Deno.exit() in Deno Deploy
+  
+  // Small delay to ensure cleanup
+  await new Promise(resolve => setTimeout(resolve, 200));
+  
+  if (!isProduction) {
+    Deno.exit(0);
+  }
 };
 
-// Handle shutdown signals
-const signals: Deno.Signal[] = ["SIGINT"];
-if (Deno.build.os !== "windows") {
-  signals.push("SIGTERM", "SIGQUIT");
+// Handle shutdown signals (only in development)
+if (!isProduction) {
+  const signals: Deno.Signal[] = ["SIGINT"];
+  if (Deno.build.os !== "windows") {
+    signals.push("SIGTERM", "SIGQUIT");
+  }
+
+  signals.forEach((signal) => {
+    try {
+      Deno.addSignalListener(signal, shutdown);
+    } catch (error) {
+      console.warn(`⚠️  Failed to set up signal handler for ${signal}:`, error);
+    }
+  });
 }
 
-signals.forEach((signal) => {
-  try {
-    Deno.addSignalListener(signal, shutdown);
-  } catch (error) {
-    console.warn(`⚠️  Failed to set up signal handler for ${signal}:`, error);
+const PORT = Number(Deno.env.get("PORT")) || 8000;
+
+// Global error handlers
+globalThis.addEventListener("unhandledrejection", (event) => {
+  console.error("🚨 Unhandled promise rejection:", event.reason);
+  if (!isProduction) {
+    console.error("This might be causing the server to hang. Exiting...");
+    Deno.exit(1);
   }
+  event.preventDefault();
 });
 
-const PORT = Number(Deno.env.get("PORT")) || 8000;
+globalThis.addEventListener("error", (event) => {
+  console.error("🚨 Uncaught error:", event.error);
+  if (!isProduction) {
+    Deno.exit(1);
+  }
+});
 
 console.log(`🔥 Hono server starting on port ${PORT}`);
 console.log(`🌐 Environment: ${isProduction ? "production" : "development"}`);
 console.log(`🗄️  Database: ${dbName}`);
-console.log(`🔐 Auth: Better Auth + Google OAuth`);
+console.log(`🔐 Auth: Better Auth${hasGoogleAuth ? " + Google OAuth" : " (Mock Mode)"}`);
 
-Deno.serve({
-  port: PORT,
-  onListen: () => {
-    console.log(`🚀 Server ready at http://localhost:${PORT}`);
-  },
-}, app.fetch);
+// Store server instance for cleanup
+let server: Deno.HttpServer | undefined;
+
+try {
+  server = Deno.serve({
+    port: PORT,
+    onListen: () => {
+      console.log(`🚀 Server ready at http://localhost:${PORT}`);
+    },
+  }, app.fetch);
+  
+  // Wait for server and handle any errors
+  await server.finished;
+} catch (error) {
+  console.error("❌ Server startup failed:");
+  console.error(error);
+  if (error.message?.includes("Address already in use")) {
+    console.error(`\n💡 Port ${PORT} is already in use. Try:`);
+    console.error(`   lsof -ti:${PORT} | xargs kill -9`);
+    console.error(`   Or use a different port with: PORT=8001 deno task dev`);
+  }
+  if (!isProduction) {
+    Deno.exit(1);
+  }
+}
 
 export default { fetch: app.fetch };
