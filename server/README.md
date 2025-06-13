@@ -16,12 +16,14 @@ Backend for vhybZ - A Fresh 2.0 web application with MongoDB and Google OAuth.
 
 ### MongoDB Configuration
 
-The application automatically detects your environment and configures MongoDB connection:
+The application automatically detects your environment and configures MongoDB
+connection:
 
 - **All environments**: Uses `mongodb://localhost:27017` by default
 - **Production**: Set `MONGODB_URI` environment variable
 
 **WSL2/Ubuntu:**
+
 ```bash
 curl -fsSL https://www.mongodb.org/static/pgp/server-7.0.asc | sudo gpg -o /usr/share/keyrings/mongodb-server-7.0.gpg --dearmor
 echo "deb [ arch=amd64,arm64 signed-by=/usr/share/keyrings/mongodb-server-7.0.gpg ] https://repo.mongodb.org/apt/ubuntu jammy/mongodb-org/7.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-7.0.list
@@ -31,10 +33,11 @@ sudo systemctl start mongod
 sudo systemctl enable mongod
 ```
 
-**Windows:**
-Download and install from [MongoDB Downloads](https://www.mongodb.com/try/download/community)
+**Windows:** Download and install from
+[MongoDB Downloads](https://www.mongodb.com/try/download/community)
 
 **macOS:**
+
 ```bash
 brew tap mongodb/brew
 brew install mongodb-community
@@ -58,12 +61,12 @@ Set up Google OAuth for authentication:
 
 ## Environment Variables
 
-| Variable | Default | Description |
-|----------|---------|-------------|
-| `MONGODB_URI` | Auto-detected | MongoDB connection string |
-| `MONGODB_DB_NAME` | `vhybZ` | Database name |
-| `GOOGLE_CLIENT_ID` | Required | Google OAuth client ID |
-| `GOOGLE_CLIENT_SECRET` | Required | Google OAuth client secret |
+| Variable               | Default       | Description                |
+| ---------------------- | ------------- | -------------------------- |
+| `MONGODB_URI`          | Auto-detected | MongoDB connection string  |
+| `MONGODB_DB_NAME`      | `vhybZ`       | Database name              |
+| `GOOGLE_CLIENT_ID`     | Required      | Google OAuth client ID     |
+| `GOOGLE_CLIENT_SECRET` | Required      | Google OAuth client secret |
 
 ## Development
 
@@ -99,7 +102,8 @@ This application works seamlessly across:
 4. **Linux** - Native development
 5. **macOS** - Native development
 
-The `dev.ts` script automatically detects your environment and configures MongoDB connections appropriately.
+The `dev.ts` script automatically detects your environment and configures
+MongoDB connections appropriately.
 
 ## Architecture
 

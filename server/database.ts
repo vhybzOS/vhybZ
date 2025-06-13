@@ -25,7 +25,7 @@ const BaseUserSchema = z.object({
   email: z.email(),
   name: z.string(),
   avatar: z.url().optional(),
-  role: z.enum(['user', 'admin', 'superadmin']).default('user'),
+  role: z.enum(["user", "admin", "superadmin"]).default("user"),
   permissions: z.array(z.string()).optional(),
   createdAt: z.date(),
   updatedAt: z.date(),
@@ -101,13 +101,13 @@ class Database {
 
     // Auto-detect environment and set appropriate MongoDB configuration
     const isDeno = typeof Deno !== "undefined";
-    
+
     // Check multiple indicators for production environment
     const isProduction = isDeno && (
-      Deno.env.get("DENO_DEPLOYMENT_ID") !== undefined ||  // Running on Deno Deploy
-      Deno.env.get("MONGODB_ATLAS_URI") !== undefined ||   // Atlas URI provided (from GitHub secrets)
-      Deno.env.get("NODE_ENV") === "production" ||         // Explicit production flag
-      Deno.env.get("GITHUB_ACTIONS") === "true"            // Running in GitHub Actions
+      Deno.env.get("DENO_DEPLOYMENT_ID") !== undefined || // Running on Deno Deploy
+      Deno.env.get("MONGODB_ATLAS_URI") !== undefined || // Atlas URI provided (from GitHub secrets)
+      Deno.env.get("NODE_ENV") === "production" || // Explicit production flag
+      Deno.env.get("GITHUB_ACTIONS") === "true" // Running in GitHub Actions
     );
 
     // Configure MongoDB based on environment
@@ -131,7 +131,7 @@ class Database {
 
     // Log environment info (without sensitive data)
     console.log(`Database: ${dbName}`);
-    console.log(`MongoDB Host: ${mongoUri.split('@')[1] || 'localhost:27017'}`);
+    console.log(`MongoDB Host: ${mongoUri.split("@")[1] || "localhost:27017"}`);
   }
 
   // Initialize database connection and collections
@@ -269,7 +269,7 @@ class Database {
       email: googleProfile.email,
       name: googleProfile.name,
       avatar: googleProfile.picture,
-      role: 'user' as const,
+      role: "user" as const,
       permissions: [],
       createdAt: now,
       updatedAt: now,
@@ -291,7 +291,7 @@ class Database {
     try {
       const user = await this.users.findOne({ _id: new ObjectId(id) });
       if (!user) return null;
-      
+
       return parseWithZod(UserSchema, user, "user");
     } catch (error) {
       console.error("Error getting user:", error);

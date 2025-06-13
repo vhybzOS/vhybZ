@@ -2,7 +2,8 @@
   "tasks": {
     "dev": "deno serve -A --watch main.ts",
     "start": "deno serve -A main.ts",
-    "check": "deno fmt --check . && deno lint . && deno check **/*.ts"
+    "check": "deno fmt --check . && deno lint . && deno check **/*.ts",
+    "fmt": "deno fmt && deno task check"
   },
   "imports": {
     "hono": "jsr:@hono/hono@^4.6.15",

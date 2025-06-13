@@ -67,7 +67,7 @@ const auth = betterAuth({
     google: {
       clientId: getEnv("GOOGLE_CLIENT_ID"),
       clientSecret: getEnv("GOOGLE_CLIENT_SECRET"),
-      redirectURI: isProduction 
+      redirectURI: isProduction
         ? "https://vhybz-server.deno.dev/api/auth/callback/google"
         : "http://localhost:8000/api/auth/callback/google",
     },
@@ -77,7 +77,7 @@ const auth = betterAuth({
     updateAge: 60 * 60 * 24, // 1 day
   },
   cors: {
-    origin: isProduction 
+    origin: isProduction
       ? ["https://vhybz-studio.deno.dev", "https://vhybz.com"]
       : ["http://localhost:5173", "http://localhost:3000"],
     credentials: true,
@@ -92,22 +92,25 @@ app.use("*", logger());
 app.use("*", secureHeaders());
 
 // CORS middleware
-app.use("*", cors({
-  origin: isProduction 
-    ? ["https://vhybz-studio.deno.dev", "https://vhybz.com"]
-    : ["http://localhost:5173", "http://localhost:3000"],
-  credentials: true,
-  allowMethods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-  allowHeaders: ["Content-Type", "Authorization"],
-}));
+app.use(
+  "*",
+  cors({
+    origin: isProduction
+      ? ["https://vhybz-studio.deno.dev", "https://vhybz.com"]
+      : ["http://localhost:5173", "http://localhost:3000"],
+    credentials: true,
+    allowMethods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowHeaders: ["Content-Type", "Authorization"],
+  }),
+);
 
 // Health check endpoint
 app.get("/health", (c) => {
-  return c.json({ 
-    status: "healthy", 
+  return c.json({
+    status: "healthy",
     timestamp: new Date().toISOString(),
     environment: isProduction ? "production" : "development",
-    database: dbName
+    database: dbName,
   });
 });
 
@@ -120,7 +123,7 @@ app.on(["POST", "GET"], "/api/auth/**", (c) => {
 app.use("/api/me", async (c, next) => {
   try {
     await ensureMongoConnection();
-    
+
     const session = await auth.api.getSession({
       headers: c.req.header(),
     });
@@ -158,7 +161,7 @@ app.post("/api/conversations", async (c) => {
   return c.json({ success: true, userId: user?.id, data: body });
 });
 
-// Artifacts API (placeholder for now)  
+// Artifacts API (placeholder for now)
 app.get("/api/artifacts", async (c) => {
   const user = c.get("user");
   // TODO: Implement artifact logic with MongoDB
@@ -228,7 +231,9 @@ try {
   await ensureMongoConnection();
   console.log("🔐 Better Auth configured with Google OAuth");
 } catch (error) {
-  console.log("⚠️  Initial MongoDB connection failed, will retry on first request");
+  console.log(
+    "⚠️  Initial MongoDB connection failed, will retry on first request",
+  );
 }
 
 // Graceful shutdown
@@ -264,9 +269,11 @@ console.log(`🌐 Environment: ${isProduction ? "production" : "development"}`);
 console.log(`🗄️  Database: ${dbName}`);
 console.log(`🔐 Auth: Better Auth + Google OAuth`);
 
-Deno.serve({ 
+Deno.serve({
   port: PORT,
   onListen: () => {
     console.log(`🚀 Server ready at http://localhost:${PORT}`);
-  }
+  },
 }, app.fetch);
+
+export default { fetch: app.fetch };
