@@ -1,7 +1,8 @@
 import { StateGraph, START, MemorySaver, END } from "@langchain/langgraph"
-import { NamedMessages, Jodi, Human, Davici, GraphState } from "./nodes.ts"
+import { NamedMessages, Jodi, Human, Davici, GraphState, ToolExecutor } from "./nodes.ts"
 import { MongoClient } from "mongodb";
 import { MongoDBSaver } from "@langchain/langgraph-checkpoint-mongodb";
+import { AIMessage } from "@langchain/core/messages";
 
 if (!process.env.MONGODB_URL) {
   throw new Error("no mongo db url provided")
@@ -9,8 +10,10 @@ if (!process.env.MONGODB_URL) {
 const client = new MongoClient(process.env.MONGODB_URL);
 
 const builder = new StateGraph(NamedMessages)
-  .addNode("jodiN", Jodi)
-  .addNode("input", Human, { ends: ["jodiN", "daviciN", END] })
+  .addNode("jodiN", Jodi, { ends: ["input", "daviciN"] })
+  .addNode("input", Human, { ends: ["jodiN", "daviciN"] })
+  .addNode("daviciN", Davici, { ends: ["input", "executorN", END] })
+  .addNode("executorN", ToolExecutor, { ends: ["daviciN"] })
   .addEdge(START, "jodiN")
   .addConditionalEdges("jodiN", (state: GraphState) => {
     if (state.jodi.length > 1 && state.jodi.at(-1)) {
@@ -20,9 +23,14 @@ const builder = new StateGraph(NamedMessages)
       }
     }
     return "input"
-  })
-  .addNode("daviciN", Davici)
-  .addEdge("daviciN", "input")
+  }, ["input", "daviciN"])
+  .addConditionalEdges("daviciN", (state: GraphState) => {
+    const resp = state.davici.at(-1) as AIMessage
+    if (resp && resp.tool_calls && resp.tool_calls.length > 0) {
+      return "executorN"
+    }
+    return "input"
+  }, ["executorN", "input"])
 
 const checkpointer = new MongoDBSaver({ client })
 
