@@ -1,6 +1,12 @@
 import { StateGraph, START, MemorySaver, END } from "@langchain/langgraph"
-import { NamedMessages, Jodi, Human, Davici, GraphState } from "nodes"
+import { NamedMessages, Jodi, Human, Davici, GraphState } from "./nodes.ts"
+import { MongoClient } from "mongodb";
+import { MongoDBSaver } from "@langchain/langgraph-checkpoint-mongodb";
 
+if (!process.env.MONGODB_URL) {
+  throw new Error("no mongo db url provided")
+}
+const client = new MongoClient(process.env.MONGODB_URL);
 
 const builder = new StateGraph(NamedMessages)
   .addNode("jodiN", Jodi)
@@ -18,6 +24,6 @@ const builder = new StateGraph(NamedMessages)
   .addNode("daviciN", Davici)
   .addEdge("daviciN", "input")
 
-const checkpointer = new MemorySaver()
+const checkpointer = new MongoDBSaver({ client })
 
 export const graph = builder.compile({ checkpointer })

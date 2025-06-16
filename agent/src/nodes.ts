@@ -2,9 +2,9 @@ import { AIMessage, BaseMessage, HumanMessage } from "@langchain/core/messages";
 import { Annotation, Command, interrupt, messagesStateReducer } from "@langchain/langgraph";
 import { ChatGoogleGenerativeAI } from "@langchain/google-genai";
 import { Runnable, RunnableConfig } from "@langchain/core/runnables";
-import { renderTemplate } from "./prompt";
+import { renderTemplate } from "./prompt.ts";
 import { ToolNode } from "@langchain/langgraph/prebuilt";
-import { tools } from "tools";
+import { tools } from "tools.ts";
 
 export const NamedMessages = Annotation.Root({
   jodi: Annotation<BaseMessage[]>({
@@ -18,7 +18,12 @@ export const NamedMessages = Annotation.Root({
   lastAgent: Annotation<string>({
     reducer: (_, y) => y,
   }),
-  html: Annotation<string>
+  html: Annotation<string>({
+    reducer: (_, y) => y,
+  }),
+  render: Annotation<string>({
+    reducer: (_, y) => y,
+  })
 })
 
 export type GraphState = typeof NamedMessages.State
@@ -40,7 +45,6 @@ async function callLLM(model: Runnable, msgs: BaseMessage[], config?: RunnableCo
     const tresp = await toolNode.invoke({ messages: [resp] })
     console.log("tool respoonse", tresp)
     newMsgs.push(...tresp.messages)
-    console.log(newMsgs)
     return await callLLM(model, newMsgs)
   }
   return newMsgs
@@ -58,7 +62,6 @@ export async function Jodi(state: GraphState, config?: RunnableConfig) {
   console.log("msgs length before", msgs.length)
   const llmResp = await callLLM(llm, msgs)
   console.log("msgs length after", msgs.length)
-  console.log(llmResp)
   return { jodi: llmResp, lastAgent: name }
 }
 
@@ -73,7 +76,6 @@ export async function Davici(state: GraphState, config?: RunnableConfig) {
     msgs.push(new HumanMessage({ content }))
   }
   msgs.push(...state.davici)
-  console.log(msgs)
   const llmWithTools = llm.bindTools(tools)
   return { davici: await callLLM(llmWithTools, msgs), lastAgent: name }
 
