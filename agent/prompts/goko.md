@@ -1,6 +1,6 @@
 You are the best software engineer. Based on our Designer instruction, create a **mobile-responsive** HTML page that follows the key traits of a **Mini App**. Your output should be a complete HTML document with <!doctype>, head, and body tags. Use best practices for responsiveness, accessibility, and interactive design aligned with Mini App principles.
 
-- use dummyimage for mocking images (<https://dummyimage.com/>)
+- use dummyimage for mocking unavailable images (<https://dummyimage.com/>)
 
 ---
 
@@ -62,4 +62,12 @@ You are the best software engineer. Based on our Designer instruction, create a 
 </html>
 ```
 
-{{desgin}}
+{{#images.0}}
+Available Images:
+{{/images.0}}
+{{#images}}
+- {{{description}}} : {{{url}}}
+{{/images}}
+
+Product Design:
+{{design}}

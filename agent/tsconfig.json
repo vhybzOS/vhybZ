@@ -1,14 +1,19 @@
 {
   "extends": "@tsconfig/recommended",
   "compilerOptions": {
+    "target": "es2022", // Or a more recent ES version
+    "module": "node16", // Or "esnext", "es2022" etc. "node16" is a good option for modern Node.js environments.
+    "moduleResolution": "node16", // Or "bundler", "node"
+    "esModuleInterop": true, // Recommended for better compatibility
+    "forceConsistentCasingInFileNames": true,
     "outDir": "dist",
     "lib": [
       "ES2021",
       "ES2022.Object",
       "DOM"
     ],
-    "target": "ES2021",
-    "module": "nodenext",
+    // "target": "ES2021",
+    // "module": "nodenext",
     "sourceMap": true,
     "allowSyntheticDefaultImports": true,
     "baseUrl": "./src",
@@ -17,7 +22,9 @@
     "noFallthroughCasesInSwitch": true,
     "noUnusedParameters": true,
     "useDefineForClassFields": true,
-    "strictPropertyInitialization": false
+    "strictPropertyInitialization": false,
+    "allowImportingTsExtensions": true,
+    "emitDeclarationOnly": true,
   },
   "exclude": [
     "node_modules/",

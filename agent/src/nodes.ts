@@ -1,10 +1,13 @@
-import { AIMessage, BaseMessage, HumanMessage } from "@langchain/core/messages";
+import { AIMessage, BaseMessage, HumanMessage, ToolMessage } from "@langchain/core/messages";
 import { Annotation, Command, interrupt, messagesStateReducer } from "@langchain/langgraph";
 import { ChatGoogleGenerativeAI } from "@langchain/google-genai";
 import { Runnable, RunnableConfig } from "@langchain/core/runnables";
-import { renderTemplate } from "./prompt";
+import { renderTemplate } from "./prompt.ts";
 import { ToolNode } from "@langchain/langgraph/prebuilt";
-import { tools } from "tools";
+import { tools } from "tools.ts";
+
+export type AgentName = "daviciN" | "jodiN"
+export type StateName = "davici" | "jodi"
 
 export const NamedMessages = Annotation.Root({
   jodi: Annotation<BaseMessage[]>({
@@ -15,15 +18,25 @@ export const NamedMessages = Annotation.Root({
     reducer: messagesStateReducer,
     default: () => []
   }),
-  lastAgent: Annotation<string>({
+  lastAgent: Annotation<AgentName>({
     reducer: (_, y) => y,
   }),
-  html: Annotation<string>
+  html: Annotation<string>({
+    reducer: (_, y) => y,
+  }),
+  render: Annotation<string>({
+    reducer: (_, y) => y,
+  })
 })
 
 export type GraphState = typeof NamedMessages.State
 
 const toolNode = new ToolNode(tools)
+
+
+function stateName(agentName: AgentName): StateName {
+  return agentName.replace("N", "") as StateName
+}
 
 const llm = new ChatGoogleGenerativeAI({
   model: "gemini-2.5-flash-preview-05-20",
@@ -33,16 +46,13 @@ const llm = new ChatGoogleGenerativeAI({
 
 async function callLLM(model: Runnable, msgs: BaseMessage[], config?: RunnableConfig): Promise<BaseMessage[]> {
   const resp = await model.invoke(msgs, config)
-  console.log("failed here")
   const newMsgs = msgs.slice()
   newMsgs.push(resp)
-  if (resp.tool_calls && resp.tool_calls.length > 0) {
-    const tresp = await toolNode.invoke({ messages: [resp] })
-    console.log("tool respoonse", tresp)
-    newMsgs.push(...tresp.messages)
-    console.log(newMsgs)
-    return await callLLM(model, newMsgs)
-  }
+  // if (resp.tool_calls && resp.tool_calls.length > 0) {
+  //   const tresp = await toolNode.invoke({ messages: [resp] })
+  //   newMsgs.push(...tresp.messages)
+  //   return await callLLM(model, newMsgs)
+  // }
   return newMsgs
 }
 
@@ -55,10 +65,7 @@ export async function Jodi(state: GraphState, config?: RunnableConfig) {
     return { jodi: msgs, lastAgent: name }
   }
   msgs.push(...state.jodi)
-  console.log("msgs length before", msgs.length)
-  const llmResp = await callLLM(llm, msgs)
-  console.log("msgs length after", msgs.length)
-  console.log(llmResp)
+  const llmResp = await callLLM(llm, msgs, config)
   return { jodi: llmResp, lastAgent: name }
 }
 
@@ -73,25 +80,38 @@ export async function Davici(state: GraphState, config?: RunnableConfig) {
     msgs.push(new HumanMessage({ content }))
   }
   msgs.push(...state.davici)
-  console.log(msgs)
   const llmWithTools = llm.bindTools(tools)
-  return { davici: await callLLM(llmWithTools, msgs), lastAgent: name }
+  return { davici: await callLLM(llmWithTools, msgs, config), lastAgent: name }
 
 }
 
+export async function ToolExecutor(state: GraphState, config?: RunnableConfig) {
+  const sn = stateName(state.lastAgent)
+  const toolCalls = state[sn].at(-1) as AIMessage
+  if (!toolCalls || !toolCalls.tool_calls || toolCalls.tool_calls.length < 1) {
+    throw new Error("there is no function call")
+  }
+  const tresp = await toolNode.invoke({ messages: [toolCalls] }, config)
+  return new Command({
+    goto: state.lastAgent,
+    update: {
+      [sn]: [
+        ...tresp.messages
+      ]
+    }
+  });
+}
 
 export function Human(state: GraphState): Command {
-  const userInput: string = interrupt("ready for user input")
-  let agent = "jodiN"
-  if (state.lastAgent) {
-    // throw new Error("Could not determine the active agent.")
-    agent = state.lastAgent
+  if (!state.lastAgent) {
+    throw new Error("Could not determine the active agent.")
   }
-  console.log(agent)
+  const agent = state.lastAgent
+  const userInput: string = interrupt({ agent, text: "ready for user input" })
   const command = new Command({
     goto: agent,
     update: {
-      [agent.replace("N", "")]: [
+      [stateName(agent)]: [
         {
           "role": "user",
           "content": userInput,

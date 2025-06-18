@@ -1,9 +1,9 @@
 
-import { Prompt, PromptProvider } from './types';
+import { Prompt, PromptProvider } from './types.ts';
 import mustache from 'mustache';
 import { extname, basename, join } from 'path';
 import { readdir, readFile } from 'fs/promises';
-import { sleep } from './utils';
+import { sleep } from './utils.ts';
 
 const PROMPTS_PATH = './prompts';
 
