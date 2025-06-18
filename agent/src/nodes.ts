@@ -1,5 +1,5 @@
 import { AIMessage, BaseMessage, HumanMessage, ToolMessage } from "@langchain/core/messages";
-import { Annotation, Command, interrupt, messagesStateReducer } from "@langchain/langgraph";
+import { Annotation, Command, interrupt, messagesStateReducer, MessagesAnnotation } from "@langchain/langgraph";
 import { ChatGoogleGenerativeAI } from "@langchain/google-genai";
 import { Runnable, RunnableConfig } from "@langchain/core/runnables";
 import { renderTemplate } from "./prompt.ts";
@@ -7,17 +7,9 @@ import { ToolNode } from "@langchain/langgraph/prebuilt";
 import { tools } from "tools.ts";
 
 export type AgentName = "daviciN" | "jodiN"
-export type StateName = "davici" | "jodi"
 
 export const NamedMessages = Annotation.Root({
-  jodi: Annotation<BaseMessage[]>({
-    reducer: messagesStateReducer,
-    default: () => []
-  }),
-  davici: Annotation<BaseMessage[]>({
-    reducer: messagesStateReducer,
-    default: () => []
-  }),
+  ...MessagesAnnotation.spec,
   lastAgent: Annotation<AgentName>({
     reducer: (_, y) => y,
   }),
@@ -34,19 +26,18 @@ export type GraphState = typeof NamedMessages.State
 const toolNode = new ToolNode(tools)
 
 
-function stateName(agentName: AgentName): StateName {
-  return agentName.replace("N", "") as StateName
-}
-
 const llm = new ChatGoogleGenerativeAI({
   model: "gemini-2.5-flash-preview-05-20",
   maxRetries: 3,
   temperature: 0.7
 });
 
-async function callLLM(model: Runnable, msgs: BaseMessage[], config?: RunnableConfig): Promise<BaseMessage[]> {
+async function callLLM(model: Runnable, msgs: BaseMessage[], name: string, config?: RunnableConfig): Promise<BaseMessage[]> {
   const resp = await model.invoke(msgs, config)
+  resp.additional_kwargs.name = name
+
   const newMsgs = msgs.slice()
+
   newMsgs.push(resp)
   // if (resp.tool_calls && resp.tool_calls.length > 0) {
   //   const tresp = await toolNode.invoke({ messages: [resp] })
@@ -59,44 +50,46 @@ async function callLLM(model: Runnable, msgs: BaseMessage[], config?: RunnableCo
 export async function Jodi(state: GraphState, config?: RunnableConfig) {
   const name = "jodiN"
   const prompt = await renderTemplate("jodi", {})
-  const msgs: BaseMessage[] = []
-  if (state.jodi.length < 1 && prompt) {
-    msgs.push(new AIMessage({ content: prompt }))
-    return { jodi: msgs, lastAgent: name }
+  const mem = state.messages.filter(i => i.additional_kwargs.name === name)
+  if (mem.length < 1 && prompt) {
+    mem.push(new AIMessage({ content: prompt, additional_kwargs: { name: name } }))
+    return { messages: mem, lastAgent: name }
   }
-  msgs.push(...state.jodi)
-  const llmResp = await callLLM(llm, msgs, config)
-  return { jodi: llmResp, lastAgent: name }
+  const llmResp = await callLLM(llm, mem, name, config)
+  return { messages: llmResp, lastAgent: name }
 }
 
 export async function Davici(state: GraphState, config?: RunnableConfig) {
   const name = "daviciN"
   const prompt = await renderTemplate("davici", {})
 
-  const msgs: BaseMessage[] = []
-  if (state.davici.length < 1 && prompt) {
-    msgs.push(new AIMessage({ content: prompt }))
-    const { content } = state.jodi.at(-1)!
-    msgs.push(new HumanMessage({ content }))
+  const mem = state.messages.filter(i => i.additional_kwargs.name === name)
+  if (mem.length < 1 && prompt) {
+    mem.push(new AIMessage({ content: prompt, additional_kwargs: { name: name } }))
+    const { content } = state.messages.filter(i => i.additional_kwargs.name === "jodiN").at(-1)!
+    mem.push(new HumanMessage({ content, additional_kwargs: { name: name } }))
   }
-  msgs.push(...state.davici)
   const llmWithTools = llm.bindTools(tools)
-  return { davici: await callLLM(llmWithTools, msgs, config), lastAgent: name }
+  return { messages: await callLLM(llmWithTools, mem, name, config), lastAgent: name }
 
 }
 
 export async function ToolExecutor(state: GraphState, config?: RunnableConfig) {
-  const sn = stateName(state.lastAgent)
-  const toolCalls = state[sn].at(-1) as AIMessage
+  const toolCalls = state.messages.at(-1) as AIMessage
   if (!toolCalls || !toolCalls.tool_calls || toolCalls.tool_calls.length < 1) {
     throw new Error("there is no function call")
   }
+
   const tresp = await toolNode.invoke({ messages: [toolCalls] }, config)
+  const msgs = tresp.messages.map((i: BaseMessage) => {
+    i.additional_kwargs.name = toolCalls.additional_kwargs.name
+    return i
+  })
   return new Command({
     goto: state.lastAgent,
     update: {
-      [sn]: [
-        ...tresp.messages
+      messages: [
+        ...msgs
       ]
     }
   });
@@ -111,11 +104,8 @@ export function Human(state: GraphState): Command {
   const command = new Command({
     goto: agent,
     update: {
-      [stateName(agent)]: [
-        {
-          "role": "user",
-          "content": userInput,
-        }
+      messages: [
+        new HumanMessage({ content: userInput, additional_kwargs: { name: agent } })
       ]
     }
   });

@@ -16,8 +16,9 @@ const builder = new StateGraph(NamedMessages)
   .addNode("executorN", ToolExecutor, { ends: ["daviciN"] })
   .addEdge(START, "jodiN")
   .addConditionalEdges("jodiN", (state: GraphState) => {
-    if (state.jodi.length > 1 && state.jodi.at(-1)) {
-      const msg = state.jodi.at(-1)
+    const mem = state.messages
+    if (mem.length > 1 && mem.at(-1)) {
+      const msg = mem.at(-1)
       if (msg?.text.includes("LETS BUILD THIS")) {
         return "daviciN"
       }
@@ -25,7 +26,8 @@ const builder = new StateGraph(NamedMessages)
     return "input"
   }, ["input", "daviciN"])
   .addConditionalEdges("daviciN", (state: GraphState) => {
-    const resp = state.davici.at(-1) as AIMessage
+    const mem = state.messages
+    const resp = mem.at(-1) as AIMessage
     if (resp && resp.tool_calls && resp.tool_calls.length > 0) {
       return "executorN"
     }
