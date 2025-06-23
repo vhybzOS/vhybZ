@@ -2,6 +2,7 @@ import { Hono } from "hono";
 import { cors } from "hono/cors";
 import { logger } from "hono/logger";
 import { secureHeaders } from "hono/secure-headers";
+import { swaggerUI } from '@hono/swagger-ui'
 import { load } from "std/dotenv";
 import { betterAuth } from "better-auth";
 import { mongodbAdapter } from "better-auth/adapters/mongodb";
@@ -100,7 +101,7 @@ if (hasGoogleAuth || isProduction) {
   authConfig.socialProviders = {
     google: {
       clientId: googleClientId || "mock-client-id",
-      clientSecret: googleClientSecret || "mock-client-secret", 
+      clientSecret: googleClientSecret || "mock-client-secret",
       redirectURI: isProduction
         ? "https://vhybz-server.deno.dev/api/auth/callback/google"
         : "http://localhost:8000/api/auth/callback/google",
@@ -167,10 +168,10 @@ if (!isProduction && !hasGoogleAuth) {
       image: "https://api.dicebear.com/7.x/avataaars/svg?seed=dev",
       emailVerified: new Date(),
     };
-    
+
     // Create a mock session (this is simplified - in real Better Auth this would be more complex)
-    return c.json({ 
-      success: true, 
+    return c.json({
+      success: true,
       user: mockUser,
       message: "Mock login successful - dev mode only"
     });
@@ -192,7 +193,7 @@ app.use("/api/me", async (c, next) => {
       if (devAuth === "true") {
         const mockUser = {
           id: "dev-user-123",
-          email: "dev@example.com", 
+          email: "dev@example.com",
           name: "Dev User",
           image: "https://api.dicebear.com/7.x/avataaars/svg?seed=dev",
         };
@@ -349,9 +350,9 @@ let isShuttingDown = false;
 const shutdown = async () => {
   if (isShuttingDown) return;
   isShuttingDown = true;
-  
+
   console.log("\n🔥 Shutting down Hono server gracefully...");
-  
+
   // Close server first
   if (server) {
     try {
@@ -361,7 +362,7 @@ const shutdown = async () => {
       console.error("❌ Error closing server:", error);
     }
   }
-  
+
   // Then close MongoDB
   try {
     await mongoClient.close();
@@ -369,10 +370,10 @@ const shutdown = async () => {
   } catch (error) {
     console.error("❌ Error during shutdown:", error);
   }
-  
+
   // Small delay to ensure cleanup
   await new Promise(resolve => setTimeout(resolve, 200));
-  
+
   if (!isProduction) {
     Deno.exit(0);
   }
@@ -428,7 +429,7 @@ try {
       console.log(`🚀 Server ready at http://localhost:${PORT}`);
     },
   }, app.fetch);
-  
+
   // Wait for server and handle any errors
   await server.finished;
 } catch (error) {

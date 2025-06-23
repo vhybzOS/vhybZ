@@ -17,9 +17,9 @@ export const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
     );
   }
 
-  if (!isAuthenticated) {
-    return <LoginCard />;
-  }
+  // if (!isAuthenticated) {
+  //   return <LoginCard />;
+  // }
 
   return <>{children}</>;
 };

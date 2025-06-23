@@ -1,4 +1,4 @@
-import { AIMessage, BaseMessage, HumanMessage, ToolMessage } from "@langchain/core/messages";
+import { AIMessage, BaseMessage, HumanMessage, isHumanMessage, ToolMessage } from "@langchain/core/messages";
 import { Annotation, Command, interrupt, messagesStateReducer, MessagesAnnotation } from "@langchain/langgraph";
 import { ChatGoogleGenerativeAI } from "@langchain/google-genai";
 import { Runnable, RunnableConfig } from "@langchain/core/runnables";
@@ -50,10 +50,13 @@ async function callLLM(model: Runnable, msgs: BaseMessage[], name: string, confi
 export async function Jodi(state: GraphState, config?: RunnableConfig) {
   const name = "jodiN"
   const prompt = await renderTemplate("jodi", {})
-  const mem = state.messages.filter(i => i.additional_kwargs.name === name)
-  if (mem.length < 1 && prompt) {
+  const mem = state.messages.filter(i => i.additional_kwargs.name === name || i.additional_kwargs.name === undefined)
+  if (mem.length == 0 && prompt) {
     mem.push(new AIMessage({ content: prompt, additional_kwargs: { name: name } }))
     return { messages: mem, lastAgent: name }
+  }
+  if (mem.length == 1 && prompt && isHumanMessage(mem[0])) {
+    mem.unshift(new AIMessage({ content: prompt, additional_kwargs: { name: name } }))
   }
   const llmResp = await callLLM(llm, mem, name, config)
   return { messages: llmResp, lastAgent: name }
