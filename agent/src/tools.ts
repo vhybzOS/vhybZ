@@ -6,6 +6,7 @@ import { Prompt } from "types.ts";
 import { extractHTML, renderHtmlToImage } from "utils.ts";
 import { z } from 'zod';
 import { GoogleGenAI, Modality } from "@google/genai"
+import { ArtifactsModule } from "artifacts/index.ts";
 
 
 const llm = new ChatGoogleGenerativeAI({
@@ -13,6 +14,8 @@ const llm = new ChatGoogleGenerativeAI({
   maxRetries: 3,
 });
 
+const artifactsBasePath = process.env.ARTIFACTS_PATH || './data/artifacts'; // Default to ./data/artifacts
+const artifactsModule = new ArtifactsModule({ baseArtifactsPath: artifactsBasePath });
 
 const gokoSchema = {
   name: "goko",
@@ -22,7 +25,7 @@ const gokoSchema = {
     images: z.array(z.object({ url: z.string(), description: z.string() })).describe("list of avalible image resoures")
   })
 }
-const goko = tool(async (input: any) => {
+const goko = tool(async (input: any, config) => {
   const promptFn = makePrompt("goko") as Prompt
   if (typeof promptFn === "string") {
     throw Error("goko has a wrong prompt type")
@@ -34,7 +37,10 @@ const goko = tool(async (input: any) => {
 
   const htmls = extractHTML(resp.text)
 
+
   const render = await renderHtmlToImage(htmls[0])
+  if (config.configurable.artifactId)
+    artifactsModule.saveHtml("farhoud", config.configurable.artifactId, htmls[0])
 
   return {
     html: htmls[0],
