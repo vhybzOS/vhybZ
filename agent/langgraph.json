@@ -1,9 +1,14 @@
 {
   "node_version": "20",
   "dockerfile_lines": [],
-  "dependencies": ["."],
+  "dependencies": [
+    "."
+  ],
   "graphs": {
     "agent": "./src/agent.ts:graph"
+  },
+  "http": {
+    "app": "./src/app.ts:app"
   },
   "env": ".env"
 }

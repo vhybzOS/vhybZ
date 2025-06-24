@@ -370,4 +370,49 @@ export class ArtifactsModule {
     const { imagesDirPath } = getArtifactPaths(this.baseArtifactsPath, userId, artifactId);
     return path.join(imagesDirPath, filename);
   }
+
+
+  /**
+   * Provides the full file system path to any file within an artifact's directory.
+   * This is designed for serving static files via a web server.
+   * It includes a security check to prevent path traversal.
+   *
+   * @param userId The ID of the user.
+   * @param artifactId The ID of the artifact (or threadId).
+   * @param relativeFilePath The path to the file relative to the artifact's directory
+   * (e.g., 'index.html', 'images/my_image.png', 'style.css').
+   * @returns The full absolute file system path.
+   * @throws Error if userId, artifactId, or relativeFilePath are missing.
+   * @throws Error if path traversal is detected.
+  */
+  public getArtifactFileAbsolutePath(userId: string, artifactId: string, relativeFilePath: string): string {
+    if (!userId || !artifactId || !relativeFilePath) {
+      throw new Error('userId, artifactId, and relativeFilePath are required to get an artifact file path.');
+    }
+
+    const { artifactPath } = getArtifactPaths(this.baseArtifactsPath, userId, artifactId);
+
+    // Ensure the artifactPath exists before joining, as `path.join` doesn't validate existence.
+    // We're not doing an fs.access here for performance, but the serving layer should handle ENOENT.
+
+    // Construct the full path using path.join for cross-platform compatibility
+    const fullPath = path.join(artifactPath, relativeFilePath);
+
+    // --- SECURITY CHECK: Prevent Path Traversal ---
+    // 1. Resolve the full path to normalize it (e.g., remove '..' segments)
+    const resolvedPath = path.resolve(fullPath);
+    // 2. Resolve the base artifact directory path
+    const resolvedArtifactPath = path.resolve(artifactPath);
+
+    // 3. Check if the resolved file path starts with the resolved artifact directory path.
+    //    Also, ensure it's not just the artifact directory itself (unless relativeFilePath is empty/'.')
+    //    `path.sep` ensures it matches a subdirectory, not just a prefix (e.g., /user/artifacts vs /user/artifactssomething)
+    if (!resolvedPath.startsWith(resolvedArtifactPath + path.sep) && resolvedPath !== resolvedArtifactPath) {
+      throw new Error(`Path traversal attempt detected for file: ${relativeFilePath}. Resolved path: ${resolvedPath}`);
+    }
+    // If relativeFilePath was just '.', it would resolve to resolvedArtifactPath, which is fine.
+    // If it was 'index.html', it should be resolvedArtifactPath/index.html.
+
+    return fullPath;
+  }
 }
