@@ -19,9 +19,9 @@ const artifactsModule = new ArtifactsModule({ baseArtifactsPath: artifactsBasePa
 
 const gokoSchema = {
   name: "goko",
-  description: "casting a UI/UX discribtion to mock preview mini app for user it return html and screenshot of renderd html",
+  description: "projecet a UI/UX discribtion to mini app as featuers and  return current html and screenshot of renderd mini app",
   schema: z.object({
-    prompt: z.string().describe("UI/UX describtion with details and color, size, feeling, desgin system"),
+    prompt: z.string().describe("UI/UX describtion with details and color, size, feeling, desgin system with specification of futuer and place of it"),
     images: z.array(z.object({ url: z.string(), description: z.string() })).describe("list of avalible image resoures")
   })
 }
@@ -30,7 +30,8 @@ const goko = tool(async (input: any, config) => {
   if (typeof promptFn === "string") {
     throw Error("goko has a wrong prompt type")
   }
-  const prompt = await promptFn({ design: input.prompt, images: input.images })
+  const html = await artifactsModule.getHtml("farhoud", config.configurable.thread_id)
+  const prompt = await promptFn({ design: input.prompt, images: input.images, current_app: html })
   console.log("goko prompt", prompt)
 
   const resp = await llm.invoke([new HumanMessage({ content: prompt })])
@@ -39,8 +40,9 @@ const goko = tool(async (input: any, config) => {
 
 
   const render = await renderHtmlToImage(htmls[0])
-  if (config.configurable.artifactId)
-    artifactsModule.saveHtml("farhoud", config.configurable.artifactId, htmls[0])
+  console.log("thread_id inside node")
+  if (config.configurable.thread_id)
+    artifactsModule.saveHtml("farhoud", config.configurable.thread_id, htmls[0])
 
   return {
     html: htmls[0],

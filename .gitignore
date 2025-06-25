@@ -153,3 +153,5 @@ dist
 # React Router
 .react-router/
 
+#agent-data
+**/data/
