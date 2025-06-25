@@ -15,10 +15,10 @@ app.get('/artifacts/:userId/:threadId/*', async (c) => {
   const userId = c.req.param('userId');
   const threadId = c.req.param('threadId');
   // Get the wildcard path, which is the relative path within the artifact directory
-  const relativeFilePath = c.req.path.split('/').slice(5).join('/'); // Remove '/artifacts/:userId/:threadId/' parts
+  const relativeFilePath = c.req.path.split(threadId + '/').at(-1); // Remove '/artifacts/:userId/:threadId/' parts
 
   if (!userId || !threadId || !relativeFilePath) {
-    return c.text('Invalid request: Missing user ID, thread ID, or file path.', 400);
+    return c.text(`Invalid request: Missing user ID, thread ID, or file path. ${userId} ${threadId} ${relativeFilePath}`, 400);
   }
 
   let absoluteFilePath: string;
